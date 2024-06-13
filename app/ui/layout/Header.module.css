@@ -1,5 +1,12 @@
 .header {
   height: rem(56px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #26252A; /* hardcoded */
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
 }
 
 .inner {

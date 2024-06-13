@@ -1,11 +1,15 @@
-import type { Metadata } from "next";
 import "@mantine/core/styles.css";
+import type { Metadata } from "next";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { Header } from "./ui/layout/Header";
 import { theme } from "@/theme";
 import { Footer } from "./ui/layout/Footer";
-import classes from "./globals.module.css";
+import classes from "./home.module.css";
+import localFont from 'next/font/local';
+import cx from 'clsx';
+
+const CaviarDreams = localFont({ src: 'CaviarDreams.ttf' })
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,13 +31,11 @@ export default function RootLayout({
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
       </head>
-      <body className={classes.body}>
+      <body className={cx(classes.body, CaviarDreams.className)}>
         <MantineProvider defaultColorScheme="dark" theme={theme}>
           <Header />
           <div className={classes.app}>
-            <div className={classes.inner}>
-              {children}
-            </div>
+            {children}
           </div>
           <Footer />
         </MantineProvider>

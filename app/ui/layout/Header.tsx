@@ -5,54 +5,7 @@ import { Container, Group, Burger, Drawer, ActionIcon, Flex, Tooltip, Text, Butt
 import { useDisclosure } from '@mantine/hooks';
 import { ThemeToggle } from '../components/ThemeToggle';
 import classes from './Header.module.css';
-import { IconBrandGithub, IconBrandLinkedin, IconBrandYoutubeFilled, IconFileCv, IconMailFilled } from '@tabler/icons-react';
-import { MediumIcon, ShaderToyIcon } from '../../icons/CustomIcons';
-
-
-const links = [
-  { link: '/', label: 'About' },
-  { link: '/work', label: 'Work' },
-  { link: '/projects', label: 'Projects' },
-  { link: '/blogs', label: 'Blogs' },
-  { link: '/shaders', label: 'Shaders' },
-];
-const contacts = [
-  {
-    link: "https://www.youtube.com/@nabilnymansour",
-    title: "YouTube",
-    icon: <IconBrandYoutubeFilled />,
-  },
-  {
-    link: "https://medium.com/@nabilnymansour",
-    title: "Medium",
-    icon: <MediumIcon />,
-  },
-  {
-    link: "https://www.linkedin.com/in/nnym/",
-    title: "LinkedIn",
-    icon: <IconBrandLinkedin />,
-  },
-  {
-    link: "https://github.com/NabilNYMansour",
-    title: "GitHub",
-    icon: <IconBrandGithub />,
-  },
-  {
-    link: "https://www.shadertoy.com/user/chickenlegs",
-    title: "ShaderToy",
-    icon: <ShaderToyIcon />,
-  },
-  {
-    link: "NNYM_Resume.pdf",
-    title: "Resume",
-    icon: <IconFileCv />,
-  },
-  {
-    link: "mailto:nabilnymansour@gmail.com",
-    title: "Email",
-    icon: <IconMailFilled />,
-  },
-];
+import { contacts, links } from '@/app/lib/constants';
 
 const Links = ({ active, setActive, opened, toggle }:
   { active: string, setActive: (arg0: string) => void, opened: boolean, toggle: () => void }) => {
@@ -60,7 +13,7 @@ const Links = ({ active, setActive, opened, toggle }:
     <Button
       key={link.label}
       size="xs"
-      radius="sm"
+      fz="sm"
       component="a"
       href={link.link}
       data-active={active === link.link || undefined}
@@ -89,7 +42,7 @@ const Contacts = () => {
         target="_blank"
         variant='subtle'
         size="xl"
-        aria-label="Toggle color scheme"
+        aria-label={contact.title}
       >
         {contact.icon}
       </ActionIcon>
@@ -143,7 +96,12 @@ export function Header() {
         </Group>
 
         {/* Mobile */}
-        <Burger onClick={toggle} hiddenFrom="md" size="sm" />
+        <Tooltip withArrow
+          color='main.9'
+          openDelay={750}
+          label="Navigation">
+          <Burger aria-label="Toggle navigation" onClick={toggle} hiddenFrom="md" size="sm" />
+        </Tooltip>
         <HeaderDrawer opened={opened} toggle={toggle} active={active} setActive={setActive} />
 
         {/* Both */}
