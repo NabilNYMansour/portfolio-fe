@@ -1,12 +1,12 @@
 .header {
-  height: rem(56px);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1;
-  background-color: #26252A; /* hardcoded */
-  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  background-color: light-dark(#EEEEF1, #26252A); /* hardcoded */
+  box-shadow: 0 0 0.1em rgba(0, 0, 0, 0.5);
 }
 
 .inner {
@@ -14,4 +14,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
 }

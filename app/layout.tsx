@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <ColorSchemeScript />
+        <ColorSchemeScript defaultColorScheme="dark"/>
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"

@@ -12,7 +12,7 @@ const SlidingStrings = ({ strings, timeToSlide }:
       setIndex((index + 1) % strings.length);
     }, timeToSlide);
     return () => clearInterval(intervalID);
-  }, [index]);
+  }, [index, strings.length, timeToSlide]);
 
   return (
     <>

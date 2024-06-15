@@ -44,6 +44,7 @@
   color: var(--mantine-primary-gray);
   background-color: var(--mantine-primary-color-light);
   max-width: 300px;
+  height: 50px;
 }
 
 .readTime {

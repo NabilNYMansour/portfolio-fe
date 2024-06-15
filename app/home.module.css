@@ -3,21 +3,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--mantine-primary-color-light-hover);
+  background-color: light-dark(#EEEEF1, #26252A); /* hardcoded */
+  overflow-y: scroll;
 }
 
 .app {
-  padding-top: 50px;
+  padding-top: 55px;
   flex-grow: 1;
   display: flex;
-}
-
-.inner {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .profile {
@@ -76,7 +69,7 @@
 .wave {
   animation-name: wave-animation;
   animation-duration: 2.5s;
-  animation-iteration-count: 2;  
+  animation-iteration-count: infinite;  
   transform-origin: 70% 70%;
   display: inline-block;
 }

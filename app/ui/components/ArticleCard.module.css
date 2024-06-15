@@ -1,0 +1,48 @@
+.main {
+  background-color: var(--mantine-primary-color-light);
+
+  @mixin hover {
+    background-color: light-dark(var(--mantine-color-body) ,var(--mantine-primary-color-9));
+  }
+}
+
+.image {
+  width: 330px;
+  height: 150px;
+  position: relative;
+}
+
+.title {
+  margin: 0;
+  max-width: 300px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.subtitle {
+  padding: 0;
+  margin: 0;
+  font-size: medium;
+  color: var(--mantine-primary-gray);
+  max-width: 300px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  min-height: 50px;
+}
+
+.readTime {
+  margin: 0;
+  padding: 0px;
+  min-width: 40%;
+  max-width: 300px;
+}
+
+.date {
+  margin: 0;
+  padding: 0px;
+  min-width: 40%;
+  max-width: 300px;
+  text-align: right;
+}

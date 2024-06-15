@@ -10,22 +10,20 @@ export default function Error({ error, reset }: {
   return (
     <div className={classes.root}>
       <Container>
-        <div className={classes.label}>500</div>
-        <Title className={classes.title}>Oops... </Title>
+        <div className={classes.label}>404</div>
+        <Title className={classes.title}>¯\_(ツ)_/¯</Title>
         <Text size="lg" ta="center" className={classes.description}>
-          Something went wrong. Don&apos;t worry, it&apos;s not from your end.
-          <br />
-          Try refreshing the page.
+          I don&apos;t know what you&apos;re looking for.
         </Text>
         <Group justify="center">
-          <Button variant='white'
+          {/* <Button variant='white'
             // gradient={{ from: 'main.6', to: 'main.9', deg: 90 }}
             size="md"
             onClick={
               () => reset()
             }>
             Refresh the page
-          </Button>
+          </Button> */}
         </Group>
       </Container>
     </div>

@@ -3,13 +3,13 @@ import { ActionIcon, useMantineColorScheme, useComputedColorScheme, Group, Toolt
 import { IconSun, IconMoon } from '@tabler/icons-react';
 import classes from './ThemeToggle.module.css';
 
-export function ThemeToggle() {
+export function ThemeToggle({ ...props }) {
   // These are not hooks
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
 
   return (
-    <Group justify="center">
+    <Group justify="center" {...props}>
       <Tooltip
         withArrow
         color='main.9'

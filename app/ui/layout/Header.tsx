@@ -1,36 +1,37 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Group, Burger, Drawer, ActionIcon, Flex, Tooltip, Text, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ThemeToggle } from '../components/ThemeToggle';
 import classes from './Header.module.css';
-import { contacts, links } from '@/app/lib/constants';
+import { contacts, links } from '../components/Constants';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Links = ({ active, setActive, opened, toggle }:
   { active: string, setActive: (arg0: string) => void, opened: boolean, toggle: () => void }) => {
   return links.map((link) => (
-    <Button
-      key={link.label}
-      size="xs"
-      fz="sm"
-      component="a"
-      href={link.link}
-      data-active={active === link.link || undefined}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(link.link);
-        opened && toggle();
-      }}
-      variant={active === link.link ? 'filled' : 'subtle'}
-    >
-      {link.label}
-    </Button>
+    <Link key={link.label} href={link.link} className={classes.link}>
+      <Button
+        key={link.label}
+        size="xs"
+        fz="sm"
+        onClick={() => {
+          setActive(link.link);
+          opened && toggle();
+        }}
+        variant={active === link.link ? 'filled' : 'subtle'}
+      >
+        {link.label}
+      </Button>
+    </Link>
   ))
 };
 const Contacts = () => {
   return contacts.map((contact) => (
     <Tooltip
+      key={contact.title}
       withArrow
       color='main.9'
       openDelay={750}
@@ -53,7 +54,7 @@ const Contacts = () => {
 const HeaderDrawer = ({ opened, toggle, active, setActive }:
   { opened: boolean, toggle: () => void, active: string, setActive: (arg0: string) => void }
 ) => {
-  return <Drawer.Root opened={opened} hiddenFrom="md" onClose={toggle}>
+  return <Drawer.Root opened={opened} hiddenFrom="xl" onClose={toggle}>
     <Drawer.Overlay />
     <Drawer.Content>
       <div style={{ display: "flex", height: "100vh", flexDirection: "column" }}>
@@ -85,32 +86,32 @@ const HeaderDrawer = ({ opened, toggle, active, setActive }:
 
 export function Header() {
   const [opened, { toggle }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
+  const currPath = usePathname();
+  const [active, setActive] = useState(currPath);
+
+  useEffect(() => {
+  }, [opened, active])
 
   return (
     <header className={classes.header}>
-      <Container size="md" className={classes.inner}>
+      <Container size="xl" className={classes.inner}>
         {/* Desktop */}
-        <Group gap={5} visibleFrom="md">
+        <Group gap={5} visibleFrom="xl" w={"33%"}>
           <Links active={active} setActive={setActive} opened={opened} toggle={toggle} />
         </Group>
 
-        {/* Mobile */}
-        <Tooltip withArrow
-          color='main.9'
-          openDelay={750}
-          label="Navigation">
-          <Burger aria-label="Toggle navigation" onClick={toggle} hiddenFrom="md" size="sm" />
-        </Tooltip>
-        <HeaderDrawer opened={opened} toggle={toggle} active={active} setActive={setActive} />
+        <Container visibleFrom="xl" w={"33%"}>
+          <ThemeToggle />
+        </Container>
 
-        {/* Both */}
-        <ThemeToggle />
-
-        {/* Desktop */}
-        <Group gap={5} visibleFrom="md">
+        <Group gap={5} visibleFrom="xl" w={"33%"}>
           <Contacts />
         </Group>
+
+        {/* Mobile */}
+        <Burger aria-label="Toggle navigation" onClick={toggle} hiddenFrom="xl" size="sm" />
+        <ThemeToggle hiddenFrom="xl" />
+        <HeaderDrawer opened={opened} toggle={toggle} active={active} setActive={setActive} />
       </Container>
     </header>
   );
