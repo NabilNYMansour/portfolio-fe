@@ -1,8 +1,8 @@
 import { IconBrandCSharp, IconBrandCpp, IconBrandGithub, IconBrandJavascript, IconBrandLinkedin, IconBrandMantine, IconBrandMysql, IconBrandPython, IconBrandReact, IconBrandThreejs, IconBrandTypescript, IconBrandUnity, IconBrandYoutubeFilled, IconFileCv, IconMailFilled } from '@tabler/icons-react';
-import { MediumIcon, ShaderToyIcon } from '../../icons/CustomIcons';
+import { MediumIcon, ShaderToyIcon } from '../icons/CustomIcons';
 
 export const links = [
-  { link: '/', label: 'About' },
+  { link: '/', label: 'Home' },
   { link: '/blogs', label: 'Blogs' },
   { link: '/work', label: 'Work' },
   { link: '/projects', label: 'Projects' },

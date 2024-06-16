@@ -30,7 +30,7 @@
   background-color: #ff0000;
 
   @mixin hover {
-    background-color: #ee0000;
+    background-color: #aa0000;
   }
 }
 

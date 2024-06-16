@@ -90,7 +90,8 @@ export function Header() {
   const [active, setActive] = useState(currPath);
 
   useEffect(() => {
-  }, [opened, active])
+    setActive(currPath);
+  }, [currPath]);
 
   return (
     <header className={classes.header}>

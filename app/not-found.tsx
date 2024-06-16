@@ -1,12 +1,8 @@
-'use client';
-
 import { Title, Text, Button, Container, Group } from '@mantine/core';
 import classes from './error.module.css';
+import Link from 'next/link';
 
-export default function Error({ error, reset }: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function NotFound() {
   return (
     <div className={classes.root}>
       <Container>
@@ -16,14 +12,14 @@ export default function Error({ error, reset }: {
           I don&apos;t know what you&apos;re looking for.
         </Text>
         <Group justify="center">
-          {/* <Button variant='white'
-            // gradient={{ from: 'main.6', to: 'main.9', deg: 90 }}
-            size="md"
-            onClick={
-              () => reset()
-            }>
-            Refresh the page
-          </Button> */}
+          <Link key="Home" href="/" className={classes.link}>
+            <Button
+              variant="white"
+              size="md"
+            >
+              Back to Home
+            </Button>
+          </Link>
         </Group>
       </Container>
     </div>
