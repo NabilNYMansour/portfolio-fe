@@ -1,5 +1,5 @@
 import { fetchArticleFull } from '@/app/lib/data';
-import { Container, TypographyStylesProvider } from '@mantine/core';
+import { Container, Divider, TypographyStylesProvider } from '@mantine/core';
 import { notFound } from 'next/navigation'
 import { unified } from "unified";
 import remarkParse from "remark-parse";
@@ -9,7 +9,23 @@ import rehypeStringify from "rehype-stringify";
 import rehypePrettyCode from "rehype-pretty-code";
 import classes from "./page.module.css"
 import Image from 'next/image';
-// import globalClasses from "@/app/globals.module.css"
+import { Metadata } from 'next'
+
+export async function generateMetadata(
+  { params }: { params: { slug: string } }
+): Promise<Metadata> {
+  //!!!!!!!!!!!TODO: POTENTIAL DUPLICATION OF FETCHING DATA!!!!!!!!!!!!
+  const info = await fetchArticleFull(params.slug);
+
+  //!!!!!!!!!!!TODO: Add opengraph!!!!!!!!!!!!
+  return {
+    title: info.title,
+    description: info.subtitle,
+    alternates: {
+      canonical: `https://nabilmansour.com/blogs/${params.slug}`
+    }
+  }
+}
 
 async function markdownToHtml(markdown: string) {
   const contentHtml = await unified()
@@ -48,7 +64,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
         />
       </div>
       <h1>{info.title}</h1>
-      <h2>{info.subtitle}</h2>
+      <h2 className={classes.subtitle}>{info.subtitle}</h2>
+      <div className={classes.readAndDate}>
+        <span>{info.readTime} min read</span>
+        <span>{info.date}</span>
+      </div>
+      <Divider />
+      <br />
       <TypographyStylesProvider>
         <div className={classes.markdown} dangerouslySetInnerHTML={{ __html: contentHTML }} />
       </TypographyStylesProvider>

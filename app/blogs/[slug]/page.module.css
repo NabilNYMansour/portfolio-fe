@@ -40,3 +40,12 @@
   height: 200px;
   position: relative;
 }
+
+.readAndDate {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtitle {
+  font-weight: normal;
+}

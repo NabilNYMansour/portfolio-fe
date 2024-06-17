@@ -57,6 +57,7 @@ const ButtonList = ({ link, gitLink, steamLink, youtubeLink }: {
     <>
       {buttonListData.map((data) => (
         data.link && <Tooltip
+          key={data.label}
           position="bottom"
           withArrow
           color='main-dark.9'
@@ -108,8 +109,8 @@ export async function ProjectCard({ id }: { id: string }) {
         </Link>
         <Stack gap={7.5} pl={15} pr={15} pb={15} pt={7.5}>
           <Group gap={5}>
-            {info.data.techList.map((tech: string) => (
-              <Card pl={10} pr={10} pt={2} pb={2} shadow="xs" withBorder
+            {info.data.techList.map((tech: string, i: number) => (
+              <Card key={i} pl={10} pr={10} pt={2} pb={2} shadow="xs" withBorder
                 style={{ backgroundColor: "var(--mantine-primary-color-light-hover)" }}>
                 {tech}
               </Card>))}

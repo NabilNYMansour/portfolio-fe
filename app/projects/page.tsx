@@ -12,7 +12,7 @@ const Projects = async () => {
     <>
         <h1>Projects 👨‍💻</h1>
         <p>
-          Here are some stuff I've done in the past. I'll be updating this page with more projects as I go.
+          Here are some stuff I&apos;ve done in the past. I&apos;ll be updating this page with more projects as I go.
         </p>
       <Group justify='center'>
         {projectsIDs.map((id: string) => (

@@ -44,6 +44,7 @@
   padding: 0;
   margin: 0;
   font-size: medium;
+  font-weight: normal;
   color: var(--mantine-primary-gray);
   max-width: 300px;
   display: -webkit-box;
