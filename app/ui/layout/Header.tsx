@@ -97,7 +97,7 @@ export function Header() {
     <header className={classes.header}>
       <Container size="xl" className={classes.inner}>
         {/* Desktop */}
-        <Group gap={5} visibleFrom="xl" w={"33%"}>
+        <Group gap={5} visibleFrom="xl" w={"33%"} justify='center'>
           <Links active={active} setActive={setActive} opened={opened} toggle={toggle} />
         </Group>
 
@@ -105,7 +105,7 @@ export function Header() {
           <ThemeToggle />
         </Container>
 
-        <Group gap={5} visibleFrom="xl" w={"33%"}>
+        <Group gap={5} visibleFrom="xl" w={"33%"} justify='center'>
           <Contacts />
         </Group>
 

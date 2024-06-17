@@ -1,11 +1,9 @@
 import { ArticleCardSkeleton } from "../ui/components/skeletons/Skeletons";
-import { ActionIcon, Container, Group } from "@mantine/core";
+import { Container, Group } from "@mantine/core";
 import globalClasses from "@/app/globals.module.css";
 import { fetchArticle, fetchArticlesIDs } from "../lib/data";
 import { Suspense } from "react";
-import { ArticleCard } from "../ui/components/ArticleCard";
-import { IconFaceId } from "@tabler/icons-react";
-import { SteamIcon } from "../ui/icons/CustomIcons";
+import { ArticleCard } from "../ui/components/cards/ArticleCard";
 
 
 const Blogs = async () => {

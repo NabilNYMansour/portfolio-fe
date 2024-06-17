@@ -4,9 +4,9 @@ import { MediumIcon, ShaderToyIcon } from '../icons/CustomIcons';
 export const links = [
   { link: '/', label: 'Home' },
   { link: '/blogs', label: 'Blogs' },
-  { link: '/work', label: 'Work' },
+  // { link: '/work', label: 'Work' },
   { link: '/projects', label: 'Projects' },
-  { link: '/shaders', label: 'Shaders' },
+  // { link: '/shaders', label: 'Shaders' },
 ];
 export const contacts = [
   {

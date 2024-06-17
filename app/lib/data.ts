@@ -44,6 +44,7 @@ export async function fetchLatestArticle() {
 }
 
 export async function fetchArticle(id: string) {
+  // await new Promise((resolve) => setTimeout(resolve, 1500));
   noStore();
   try {
     const response = await axios.get(`${process.env.STRAPI_URL}/api/articles/${id}?populate=banner&fields[0]=title&fields[1]=subtitle&fields[2]=readTime&fields[3]=date&fields[4]=views&fields[5]=slug`, {
@@ -109,12 +110,40 @@ export async function fetchArticlesIDs() {
   }
 }
 
-/*
-<iframe height="650" style="width: 100%;" scrolling="no" title="Ray Marching 2D" src="https://codepen.io/NabilNYMansour/embed/rNgOKRx?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/NabilNYMansour/pen/rNgOKRx">
-  Ray Marching 2D</a> by Nabil Mansour (<a href="https://codepen.io/NabilNYMansour">@NabilNYMansour</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+export async function fetchProjectsIDs(highlightedOnly: boolean) {
+  noStore();
+  try {
+    const response = await axios.get(`${process.env.STRAPI_URL}/api/projects?${highlightedOnly ? "filters[highlight][$eq]=true&" : ''}sort=date:desc&fields=id`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+      },
+    });
+    const projects = await response.data;
+    const ids = projects.data.map((project: any) => project.id);
+    return ids
+  } catch (error) {
+    throw new Error('Error fetching data');
+    console.error('Error fetching data:', error);
+    return null;
+  }
+}
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1CW_4NuAjGs?si=PSbpSUIXGgmGCAir" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-*/
+export async function fetchProject(id: string) {
+  // await new Promise((resolve) => setTimeout(resolve, 1500));
+  noStore();
+  try {
+    const response = await axios.get(`${process.env.STRAPI_URL}/api/projects/${id}?populate=banner&fields[0]=title&fields[1]=subtitle&fields[2]=data`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+      },
+    });
+    const project = await response.data;
+    const info = project.data.attributes;
+    info.banner = process.env.STRAPI_URL + info.banner.data.attributes.url;
+    return info;
+  } catch (error) {
+    throw new Error('Error fetching data');
+    console.error('Error fetching data:', error);
+    return null;
+  }
+}

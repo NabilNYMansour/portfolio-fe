@@ -2,7 +2,7 @@ import cx from 'clsx';
 import Image from "next/image";
 import classes from "./home.module.css";
 import globalClasses from "./globals.module.css";
-import { fetchLatestArticle, fetchProfilePicURL } from "./lib/data";
+import { fetchLatestArticle, fetchProfilePicURL, fetchProjectsIDs } from "./lib/data";
 import SlidingStrings from "./ui/components/SlidingStrings";
 import { Container, Group } from "@mantine/core";
 import { IconBrandYoutubeFilled, IconUser } from "@tabler/icons-react";
@@ -10,10 +10,14 @@ import { contacts, professions, technologies } from './ui/components/Constants';
 import TechList from './ui/components/TechList';
 import { ArticleCardSkeleton, ProjectCardSkeleton } from './ui/components/skeletons/Skeletons';
 import { Suspense } from 'react';
-import { ArticleCard } from './ui/components/ArticleCard';
+import { ArticleCard } from './ui/components/cards/ArticleCard';
+import { ProjectCard } from './ui/components/cards/ProjectCard';
 
 export default async function HomePage() {
-  const profilePicUrl = await fetchProfilePicURL();
+  const [profilePicUrl, highlightedProjectsIDs] = await Promise.all([
+    fetchProfilePicURL(),
+    fetchProjectsIDs(true)
+  ]);
   const youtubeLink = contacts.find(contact => contact.title === "YouTube")!.link;
   return (
     <Container size="lg" className={globalClasses.centerContainer}>
@@ -55,7 +59,7 @@ export default async function HomePage() {
           (which you can find on this website). Here is my latest post:
         </p>
         <Suspense fallback={<ArticleCardSkeleton />}>
-          <ArticleCard fetchArticle={fetchLatestArticle}/>
+          <ArticleCard fetchArticle={fetchLatestArticle} />
         </Suspense>
         <p>
           Learning new technologies and languages is always something I&apos;m interested in
@@ -66,12 +70,14 @@ export default async function HomePage() {
         <TechList techList={technologies} />
       </Container>
       <p>
-        And here&apos;s a list of projects I&apos;ve created in the past with these technologies:
+        And here are some projects I&apos;ve created in the past with these technologies:
       </p>
       <Group justify='center'>
-        <ProjectCardSkeleton />
-        <ProjectCardSkeleton />
-        <ProjectCardSkeleton />
+        {highlightedProjectsIDs.map((id: string) =>
+          <Suspense key={id} fallback={<ProjectCardSkeleton />}>
+            <ProjectCard id={id} />
+          </Suspense>
+        )}
       </Group>
     </Container>
   );

@@ -2,7 +2,23 @@
   background-color: var(--mantine-primary-color-light);
 
   @mixin hover {
-    background-color: light-dark(var(--mantine-color-body) ,var(--mantine-color-main-dark-9));
+    background-color: light-dark(
+      var(--mantine-color-body),
+      var(--mantine-color-main-dark-9)
+    );
+  }
+}
+
+.mainNoHover {
+  background-color: var(--mantine-primary-color-light);
+}
+
+.mainJustHover {
+  @mixin hover {
+    background-color: light-dark(
+      var(--mantine-color-body),
+      var(--mantine-color-main-dark-9)
+    );
   }
 }
 
@@ -32,8 +48,19 @@
   max-width: 300px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
+  min-height: 50px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.subtitleNoClamp {
+  padding: 0;
+  margin: 0;
+  font-size: medium;
+  color: var(--mantine-primary-gray);
+  max-width: 300px;
   min-height: 50px;
 }
 
