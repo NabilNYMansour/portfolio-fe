@@ -1,5 +1,7 @@
 https://nabilmansour.com/
 https://nabilmansour.com/blogs
+https://nabilmansour.com/blogs/cone-marching-in-three-js
+https://nabilmansour.com/blogs/ray-marching-in-three-js
 https://nabilmansour.com/projects
 https://nabilmansour.com/ThreeJSRayMarcher/
 https://nabilmansour.com/PerlinViewer/
