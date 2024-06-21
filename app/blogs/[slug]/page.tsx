@@ -16,8 +16,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   //!!!!!!!!!!!TODO: POTENTIAL DUPLICATION OF FETCHING DATA!!!!!!!!!!!!
   const info = await fetchArticleFull(params.slug);
-
-  //!!!!!!!!!!!TODO: Add opengraph!!!!!!!!!!!!
+  if (!info) {
+    notFound();
+  }
   return {
     title: info.title,
     description: info.subtitle,
@@ -45,7 +46,6 @@ async function markdownToHtml(markdown: string) {
     .use(remarkRehype, { allowDangerousHtml: true }) // Enable dangerous HTML in remark-rehype
     .use(rehypeRaw) // Process raw HTML (including iframes)
     .use(rehypePrettyCode, {
-      // See Options section below.
       grid: true,
       theme: "one-dark-pro",
       keepBackground: false,
