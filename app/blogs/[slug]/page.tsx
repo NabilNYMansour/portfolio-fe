@@ -23,6 +23,18 @@ export async function generateMetadata(
     description: info.subtitle,
     alternates: {
       canonical: `https://nabilmansour.com/blogs/${params.slug}`
+    },
+    openGraph: {
+      title: info.title,
+      description: info.subtitle,
+      url: `https://nabilmansour.com/blogs/${params.slug}`,
+      type: "article",
+      images: [
+        {
+          url: info.banner,
+          alt: info.title,
+        },
+      ],
     }
   }
 }
