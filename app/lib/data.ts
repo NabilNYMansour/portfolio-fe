@@ -95,7 +95,7 @@ export async function fetchArticleFull(slug: string) {
 export async function fetchArticlesIDs() {
   noStore();
   try {
-    const response = await axios.get(`${process.env.STRAPI_URL}/api/articles?fields=id`, {
+    const response = await axios.get(`${process.env.STRAPI_URL}/api/articles?sort=date:desc&fields=id`, {
       headers: {
         'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
       },
