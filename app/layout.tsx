@@ -9,7 +9,7 @@ import classes from "./home.module.css";
 import localFont from 'next/font/local';
 import cx from 'clsx';
 
-const CaviarDreams = localFont({ src: 'CaviarDreams.ttf' })
+const CaviarDreams = localFont({ src: '../public/CaviarDreams.ttf' })
 
 export const metadata: Metadata = {
   title: {
@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=yes"
