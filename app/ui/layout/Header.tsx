@@ -33,7 +33,7 @@ const Contacts = () => {
     <Tooltip
       key={contact.title}
       withArrow
-      color='main.9'
+      color='main-dark.9'
       openDelay={750}
       label={<Text fz="xs" lh="md">{contact.title}</Text>}>
       <ActionIcon

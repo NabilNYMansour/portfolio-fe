@@ -2,10 +2,12 @@ import {
   ActionIcon,
   ActionIconGroup,
   Card,
+  Flex,
   Group,
   Stack,
   Text,
   Tooltip,
+  useMantineTheme,
 } from '@mantine/core';
 import classes from './card.module.css';
 import cx from 'clsx';
@@ -60,14 +62,15 @@ const ButtonList = ({ link, gitLink, steamLink, youtubeLink }: {
           key={data.label}
           position="bottom"
           withArrow
-          color='main-dark.9'
+          color='main-dark.7'
           openDelay={750}
           label={<Text fz="xs" lh="md">{data.label}</Text>}>
           <ActionIcon
             component="a"
             href={data.link}
             target="_blank"
-            variant='filled'
+            variant='default'
+            className={classes.actionIcon}
             color={getButtonColor(data.label)}
             size="xl"
             aria-label={data.label}
@@ -89,7 +92,7 @@ export async function ProjectCard({ id }: { id: string }) {
 
   return (
     <Group m={0} p={0}>
-      <Card shadow="xs" withBorder m={0} p={0} className={classes.mainNoHover}>
+      <Card shadow="xs" withBorder m={0} p={0} className={classes.main}>
         <Link href={clickAbleLink} target="_blank" rel="noopener noreferrer" className={cx(classes.link, classes.mainJustHover)}>
           <div className={classes.image}>
             <Image
@@ -108,13 +111,13 @@ export async function ProjectCard({ id }: { id: string }) {
           </Stack>
         </Link>
         <Stack gap={7.5} pl={15} pr={15} pb={15} pt={7.5}>
-          <Group gap={5}>
+          <Flex gap={5} maw={300} wrap='wrap'>
             {info.data.techList.map((tech: string, i: number) => (
               <Card key={i} pl={10} pr={10} pt={2} pb={2} shadow="xs" withBorder
                 style={{ backgroundColor: "var(--mantine-primary-color-light-hover)" }}>
                 {tech}
               </Card>))}
-          </Group>
+          </Flex>
           <ActionIconGroup>
             <ButtonList
               link={info.data.link}

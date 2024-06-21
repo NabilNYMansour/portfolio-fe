@@ -12,7 +12,7 @@ export function ThemeToggle({ ...props }) {
     <Group justify="center" {...props}>
       <Tooltip
         withArrow
-        color='main.9'
+        color='main-dark.9'
         openDelay={750}
         label={<Text fz="xs" lh="md">Toggle Theme</Text>}>
         <ActionIcon

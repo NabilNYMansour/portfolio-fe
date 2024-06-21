@@ -9,19 +9,6 @@
   }
 }
 
-.mainNoHover {
-  background-color: var(--mantine-primary-color-light);
-}
-
-.mainJustHover {
-  @mixin hover {
-    background-color: light-dark(
-      var(--mantine-color-body),
-      var(--mantine-color-main-dark-9)
-    );
-  }
-}
-
 .link {
   text-decoration: none;
   color: var(--mantine-primary-color);
@@ -78,4 +65,8 @@
   min-width: 40%;
   max-width: 300px;
   text-align: right;
+}
+
+.actionIcon {
+  background-color: var(--mantine-primary-color);
 }
