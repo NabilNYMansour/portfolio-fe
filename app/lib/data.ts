@@ -191,6 +191,30 @@ export async function fetchProjectsIDs(highlightedOnly: boolean) {
   }
 }
 
+export async function fetchProjectsLinks() {
+  noStore();
+  try {
+    const params = new URLSearchParams(
+      {
+        'sort': 'date:desc',
+        'fields': 'data',
+      }
+    ).toString();
+    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/projects?${params}`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+      },
+    });
+    const projects = await response.data;
+    const links = projects.data.map((project: any) => project.attributes)
+      .filter((project: any) => project.data.link)
+      .map((project: any) => project.data.link);
+    return links;
+  } catch (error) {
+    return [];
+  }
+}
+
 export async function fetchProject(id: string) {
   // await new Promise((resolve) => setTimeout(resolve, 1500));
   noStore();
