@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { Container, Group, Burger, Drawer, ActionIcon, Flex, Tooltip, Text, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ThemeToggle } from '../components/ThemeToggle';
@@ -8,6 +8,7 @@ import classes from './Header.module.css';
 import { contacts, links } from '../components/Constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { transform } from 'next/dist/build/swc';
 
 const Links = ({ active, setActive, opened, toggle }:
   { active: string, setActive: (arg0: string) => void, opened: boolean, toggle: () => void }) => {
@@ -85,16 +86,42 @@ const HeaderDrawer = ({ opened, toggle, active, setActive }:
 
 
 export function Header() {
-  const [opened, { toggle }] = useDisclosure(false);
   const currPath = usePathname();
+  const [opened, { toggle }] = useDisclosure(false);
   const [active, setActive] = useState(currPath);
+  const [isHeaderVisible, setHeaderVisible] = useState(true);
+  let prevScrollVal = 0;
 
   useEffect(() => {
     setActive(currPath);
   }, [currPath]);
 
+  const handleScroll = () => {
+    if (window.scrollY < prevScrollVal) {
+      setHeaderVisible(true);
+    } else if (window.scrollY > 350) {
+      setHeaderVisible(false);
+    } else {
+      setHeaderVisible(true);
+    }
+    prevScrollVal = window.scrollY;
+  };
+
+  useEffect(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const slideUp = {
+    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-100%)',
+    transition: "transform ease 0.25s"
+  };
+
   return (
-    <header className={classes.header}>
+    <header className={classes.header} style={slideUp}>
       <Container size="xl" className={classes.inner}>
         {/* Desktop */}
         <Group gap={5} visibleFrom="xl" w={"33%"} justify='center'>
