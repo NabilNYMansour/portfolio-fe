@@ -15,7 +15,7 @@ export async function generateMetadata(
   { params }: { params: { slug: string } }
 ): Promise<Metadata> {
   // Another fetch request is inevitable here, as we need to get the article's title and subtitle
-  const info = await fetchArticleFull(params.slug);
+  const info = await fetchArticleFull(params.slug, true);
   return {
     title: info.title,
     description: info.subtitle,
