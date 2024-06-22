@@ -27,17 +27,14 @@ export default async function HomePage() {
           <br />
           I&apos;m Nabil Mansour
         </h1>
-        {profilePicUrl ?
-          <Image
-            priority
-            src={profilePicUrl}
-            alt="Nabil Mansour"
-            width={250}
-            height={250}
-            className={classes.profile}
-          /> : <div style={{ width: 250, height: 250, display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <IconUser stroke={1} size={200} />
-          </div>}
+        <Image
+          priority
+          src={profilePicUrl}
+          alt="Nabil Mansour"
+          width={250}
+          height={250}
+          className={classes.profile}
+        />
         <h2>
           <SlidingStrings strings={professions} timeToSlide={3000} />
         </h2>

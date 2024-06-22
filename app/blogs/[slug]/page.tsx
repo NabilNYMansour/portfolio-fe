@@ -14,11 +14,8 @@ import { Metadata } from 'next'
 export async function generateMetadata(
   { params }: { params: { slug: string } }
 ): Promise<Metadata> {
-  //!!!!!!!!!!!TODO: POTENTIAL DUPLICATION OF FETCHING DATA!!!!!!!!!!!!
+  // Another fetch request is inevitable here, as we need to get the article's title and subtitle
   const info = await fetchArticleFull(params.slug);
-  if (!info) {
-    notFound();
-  }
   return {
     title: info.title,
     description: info.subtitle,
@@ -58,9 +55,6 @@ async function markdownToHtml(markdown: string) {
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const info = await fetchArticleFull(params.slug);
-  if (!info) {
-    notFound();
-  }
   const contentHTML = await markdownToHtml(info.content);
   return (
     <Container size="md" m={0} p={0}>

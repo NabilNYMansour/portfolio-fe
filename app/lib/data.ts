@@ -1,9 +1,6 @@
-//!!!!!!!!!!!!!!!!!!!!!!TODO: learn how caching works in next.js!!!!!!!!!!!!!!!!!!!!!!//
-//!!!!!!!!!!!!!!!!!!!!!!TODO: learn how middleware works in next.js!!!!!!!!!!!!!!!!!!!!!!//
-//!!!!!!!!!!!!!!!!!!!!!!TODO: learn what use strict is!!!!!!!!!!!!!!!!!!!!!!//
-
 import axios from 'axios';
 import { unstable_noStore as noStore } from 'next/cache';
+import { notFound } from 'next/navigation';
 
 
 export async function fetchProfilePicURL() {
@@ -18,9 +15,7 @@ export async function fetchProfilePicURL() {
     const url = process.env.STRAPI_URL + profile.data.attributes.pic.data.attributes.url
     return url;
   } catch (error) {
-    // throw new Error('Error fetching data');
-    // console.error('Error:', error);
-    return null;
+    return '/tree.png';
   }
 }
 
@@ -38,13 +33,10 @@ export async function fetchLatestArticle() {
     return info;
   } catch (error) {
     throw new Error('Error fetching data');
-    console.error('Error fetching data:', error);
-    return null;
   }
 }
 
 export async function fetchArticle(id: string) {
-  // await new Promise((resolve) => setTimeout(resolve, 1500));
   noStore();
   try {
     const response = await axios.get(`${process.env.STRAPI_URL}/api/articles/${id}?populate=banner&fields[0]=title&fields[1]=subtitle&fields[2]=readTime&fields[3]=date&fields[4]=views&fields[5]=slug`, {
@@ -58,8 +50,6 @@ export async function fetchArticle(id: string) {
     return info;
   } catch (error) {
     throw new Error('Error fetching data');
-    console.error('Error fetching data:', error);
-    return null;
   }
 }
 
@@ -75,7 +65,6 @@ export async function fetchArticleFull(slug: string) {
     const info = article.data[0].attributes;
     info.banner = process.env.STRAPI_URL + info.banner.data.attributes.url;
 
-    // Increment views !!!!!!!!!!TODO: THIS LEADS TO RACE CONDITIONS!!!!!!!!!!
     await axios.put(`${process.env.STRAPI_URL}/api/articles/${article.data[0].id}`, {
       data: {
         views: info.views + 1,
@@ -88,7 +77,7 @@ export async function fetchArticleFull(slug: string) {
 
     return info;
   } catch (error) {
-    return null;
+    notFound();
   }
 }
 
@@ -105,8 +94,6 @@ export async function fetchArticlesIDs() {
     return ids;
   } catch (error) {
     throw new Error('Error fetching data');
-    console.error('Error fetching data:', error);
-    return null;
   }
 }
 
@@ -123,8 +110,6 @@ export async function fetchProjectsIDs(highlightedOnly: boolean) {
     return ids
   } catch (error) {
     throw new Error('Error fetching data');
-    console.error('Error fetching data:', error);
-    return null;
   }
 }
 
@@ -143,7 +128,5 @@ export async function fetchProject(id: string) {
     return info;
   } catch (error) {
     throw new Error('Error fetching data');
-    console.error('Error fetching data:', error);
-    return null;
   }
 }
