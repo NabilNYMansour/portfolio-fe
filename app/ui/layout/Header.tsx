@@ -98,6 +98,10 @@ export function Header() {
   }, [currPath]);
 
   const handleScroll = () => {
+    if (window.scrollY < 350) {
+      setHeaderVisible(true);
+    }
+
     if (window.scrollY < prevScrollVal.current || window.scrollY < 350) {
       setScrollDir('up');
     } else {
