@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import { Container, Group, Burger, Drawer, ActionIcon, Flex, Tooltip, Text, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ThemeToggle } from '../components/ThemeToggle';
@@ -8,7 +8,6 @@ import classes from './Header.module.css';
 import { contacts, links } from '../components/Constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { transform } from 'next/dist/build/swc';
 
 const Links = ({ active, setActive, opened, toggle }:
   { active: string, setActive: (arg0: string) => void, opened: boolean, toggle: () => void }) => {
@@ -84,27 +83,29 @@ const HeaderDrawer = ({ opened, toggle, active, setActive }:
   </Drawer.Root>
 };
 
-
 export function Header() {
   const currPath = usePathname();
   const [opened, { toggle }] = useDisclosure(false);
   const [active, setActive] = useState(currPath);
   const [isHeaderVisible, setHeaderVisible] = useState(true);
-  let prevScrollVal = 0;
+  const [checkHeader, setCheckHeader] = useState(true);
+  const [scrollDir, setScrollDir] = useState<'up' | 'down'>('up');
+  const prevScrollVal = useRef(0);
 
   useEffect(() => {
     setActive(currPath);
+    prevScrollVal.current = window.scrollY;
   }, [currPath]);
 
   const handleScroll = () => {
-    if (window.scrollY < prevScrollVal) {
-      setHeaderVisible(true);
-    } else if (window.scrollY > 350) {
-      setHeaderVisible(false);
+    if (window.scrollY < prevScrollVal.current || window.scrollY < 350) {
+      setScrollDir('up');
     } else {
-      setHeaderVisible(true);
+      setScrollDir('down');
     }
-    prevScrollVal = window.scrollY;
+    if (Math.abs(window.scrollY - prevScrollVal.current) > 300) {
+      prevScrollVal.current = window.scrollY;
+    }
   };
 
   useEffect(() => {
@@ -114,6 +115,20 @@ export function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const intervalID = setTimeout(() => {
+      if (scrollDir === 'down') {
+        setHeaderVisible(false);
+      } else {
+        setHeaderVisible(true);
+      }
+      setCheckHeader(!checkHeader);
+    }, 750);
+    return () => clearInterval(intervalID);
+  }, [checkHeader]);
+
+
 
   const slideUp = {
     transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-100%)',
