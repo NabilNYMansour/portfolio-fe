@@ -126,7 +126,7 @@ export function Header() {
       setCheckHeader(!checkHeader);
     }, 750);
     return () => clearInterval(intervalID);
-  }, [checkHeader]);
+  }, [checkHeader, scrollDir]);
 
 
 
