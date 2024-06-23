@@ -128,7 +128,7 @@ export function Header() {
         setHeaderVisible(true);
       }
       setCheckHeader(!checkHeader);
-    }, 750);
+    }, 200);
     return () => clearInterval(intervalID);
   }, [checkHeader, scrollDir]);
 
@@ -136,7 +136,7 @@ export function Header() {
 
   const slideUp = {
     transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-100%)',
-    transition: "transform ease 0.25s"
+    transition: "transform ease 0.1s"
   };
 
   return (
