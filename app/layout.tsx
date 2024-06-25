@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${process.env.MAIN_URL}`
   },
+  keywords: "Nabil Mansour, Software Developer, FullStack Developer, Portfolio, Toronto, GPU Programmer, Shaderman",
   openGraph: {
     title: "Nabil Mansour's Portfolio",
     description: "Software Engineer, GPU Programmer, Web developer, and YouTuber based in Toronto.",
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
         alt: "Nabil Mansour's Portfolio",
       },
     ],
-  }
+  },
 };
 
 export default function RootLayout({
@@ -48,8 +49,6 @@ export default function RootLayout({
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=yes"
         />
-        <meta name="keywords"
-          content="Nabil Mansour, Software Developer, Frontend Developer, Portfolio, Toronto, GPU Programmer" />
         <meta name="author" content="Nabil Mansour" />
         <meta name="google-site-verification" content="xo1VazvNYArvSzplJEq1l1QRWF_Xc30IAmCDBRKY8TA" />
       </head>

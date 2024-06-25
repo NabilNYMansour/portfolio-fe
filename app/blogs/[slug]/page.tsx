@@ -23,6 +23,7 @@ export async function generateMetadata(
     alternates: {
       canonical: `${process.env.MAIN_URL}/blogs/${params.slug}`
     },
+    keywords: info.tags.join(', '),
     openGraph: {
       title: info.title,
       description: info.subtitle,
