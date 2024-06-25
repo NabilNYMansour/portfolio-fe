@@ -2,6 +2,10 @@ import axios from 'axios';
 import { unstable_noStore as noStore } from 'next/cache';
 import { notFound } from 'next/navigation';
 
+const LOCAL = process.env.STRAPI_URL_LOCAL;
+const ADMIN = process.env.STRAPI_URL_ADMIN;
+const AUTH = process.env.STRAPI_AUTH_TOKEN;
+
 export async function fetchProfilePicURL() {
   noStore();
   try {
@@ -10,13 +14,13 @@ export async function fetchProfilePicURL() {
         'populate': '*'
       }
     ).toString();
-    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/profile?${params}`, {
+    const response = await axios.get(`${LOCAL}/api/profile?${params}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
     const profile = await response.data;
-    const url = process.env.STRAPI_URL_LOCAL + profile.data.attributes.pic.data.attributes.url
+    const url = LOCAL + profile.data.attributes.pic.data.attributes.url
     return url;
   } catch (error) {
     return '/tree.png';
@@ -39,14 +43,14 @@ export async function fetchLatestArticle() {
         'fields[5]': 'slug',
       }
     ).toString();
-    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/articles?${params}`, {
+    const response = await axios.get(`${LOCAL}/api/articles?${params}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
     const article = await response.data;
     const info = article.data[0].attributes;
-    info.banner = process.env.STRAPI_URL_LOCAL + info.banner.data.attributes.url;
+    info.banner = LOCAL + info.banner.data.attributes.url;
     return info;
   } catch (error) {
     throw new Error('Error fetching data');
@@ -67,14 +71,14 @@ export async function fetchArticle(id: string) {
         'fields[5]': 'slug',
       }
     ).toString();
-    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/articles/${id}?${params}`, {
+    const response = await axios.get(`${LOCAL}/api/articles/${id}?${params}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
     const article = await response.data;
     const info = article.data.attributes;
-    info.banner = process.env.STRAPI_URL_LOCAL + info.banner.data.attributes.url;
+    info.banner = LOCAL + info.banner.data.attributes.url;
     return info;
   } catch (error) {
     throw new Error('Error fetching data');
@@ -97,25 +101,24 @@ export async function fetchArticleFull(slug: string, useAdminUrl: boolean = fals
         'fields[6]': 'tags',
       }
     ).toString();
-    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/articles?${params}`, {
+    const response = await axios.get(`${LOCAL}/api/articles?${params}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
     const article = await response.data;
     const info = article.data[0].attributes;
-    info.banner = (useAdminUrl ? process.env.STRAPI_URL_ADMIN : process.env.STRAPI_URL_LOCAL)
+    info.banner = (useAdminUrl ? ADMIN : LOCAL)
       + info.banner.data.attributes.url;
-    await axios.put(`${process.env.STRAPI_URL_LOCAL}/api/articles/${article.data[0].id}`, {
+    await axios.put(`${LOCAL}/api/articles/${article.data[0].id}`, {
       data: {
         views: info.views + 1,
       }
     }, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
-
     return info;
   } catch (error) {
     notFound();
@@ -131,9 +134,9 @@ export async function fetchArticlesIDs() {
         'fields': 'id',
       }
     ).toString();
-    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/articles?${params}`, {
+    const response = await axios.get(`${LOCAL}/api/articles?${params}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
     const data = await response.data;
@@ -153,9 +156,9 @@ export async function fetchArticlesSlugs() {
         'fields': 'slug',
       }
     ).toString();
-    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/articles?${params}`, {
+    const response = await axios.get(`${LOCAL}/api/articles?${params}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
     const data = await response.data;
@@ -179,9 +182,9 @@ export async function fetchProjectsIDs(highlightedOnly: boolean) {
       params.append('filters[highlight][$eq]', 'true');
     }
     const paramsString = params.toString();
-    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/projects?${paramsString}`, {
+    const response = await axios.get(`${LOCAL}/api/projects?${paramsString}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
     const projects = await response.data;
@@ -201,9 +204,9 @@ export async function fetchProjectsLinks() {
         'fields': 'data',
       }
     ).toString();
-    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/projects?${params}`, {
+    const response = await axios.get(`${LOCAL}/api/projects?${params}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
     const projects = await response.data;
@@ -228,14 +231,14 @@ export async function fetchProject(id: string) {
         'fields[2]': 'data',
       }
     ).toString();
-    const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/projects/${id}?${params}`, {
+    const response = await axios.get(`${LOCAL}/api/projects/${id}?${params}`, {
       headers: {
-        'Authorization': `Bearer ${process.env.STRAPI_AUTH_TOKEN}`,
+        'Authorization': `Bearer ${AUTH}`,
       },
     });
     const project = await response.data;
     const info = project.data.attributes;
-    info.banner = process.env.STRAPI_URL_LOCAL + info.banner.data.attributes.url;
+    info.banner = LOCAL + info.banner.data.attributes.url;
     return info;
   } catch (error) {
     throw new Error('Error fetching data');

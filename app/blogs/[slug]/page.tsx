@@ -21,12 +21,12 @@ export async function generateMetadata(
     title: info.title,
     description: info.subtitle,
     alternates: {
-      canonical: `https://nabilmansour.com/blogs/${params.slug}`
+      canonical: `${process.env.MAIN_URL}/blogs/${params.slug}`
     },
     openGraph: {
       title: info.title,
       description: info.subtitle,
-      url: `https://nabilmansour.com/blogs/${params.slug}`,
+      url: `${process.env.MAIN_URL}/blogs/${params.slug}`,
       type: "article",
       images: [
         {

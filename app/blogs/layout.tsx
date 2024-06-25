@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Blogs",
   description: "Where I write about what I've learned and what I'm working on (and whatever else I encounter).",
   alternates: {
-    canonical: "https://nabilmansour.com/blogs"
+    canonical: `${process.env.MAIN_URL}/blogs`
   }
 };
 

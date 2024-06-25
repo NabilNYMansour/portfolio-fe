@@ -18,16 +18,16 @@ export const metadata: Metadata = {
   },
   description: "Software Engineer, GPU Programmer, Web developer, and YouTuber based in Toronto.",
   alternates: {
-    canonical: "https://nabilmansour.com/"
+    canonical: `${process.env.MAIN_URL}`
   },
   openGraph: {
     title: "Nabil Mansour's Portfolio",
     description: "Software Engineer, GPU Programmer, Web developer, and YouTuber based in Toronto.",
-    url: "https://nabilmansour.com/",
+    url: `${process.env.MAIN_URL}`,
     type: "website",
     images: [
       {
-        url: "https://nabilmansour.com/tree.png",
+        url: `${process.env.MAIN_URL}/tree.png`,
         alt: "Nabil Mansour's Portfolio",
       },
     ],

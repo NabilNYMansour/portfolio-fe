@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Projects",
   description: "My projects: ranging from web development to GPU programming.",
   alternates: {
-    canonical: "https://nabilmansour.com/projects"
+    canonical: `${process.env.MAIN_URL}/projects`
   }
 };
 
