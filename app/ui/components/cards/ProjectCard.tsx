@@ -7,7 +7,6 @@ import {
   Stack,
   Text,
   Tooltip,
-  useMantineTheme,
 } from '@mantine/core';
 import classes from './card.module.css';
 import cx from 'clsx';

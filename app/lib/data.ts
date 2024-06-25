@@ -94,6 +94,7 @@ export async function fetchArticleFull(slug: string, useAdminUrl: boolean = fals
         'fields[3]': 'date',
         'fields[4]': 'views',
         'fields[5]': 'content',
+        'fields[6]': 'tags',
       }
     ).toString();
     const response = await axios.get(`${process.env.STRAPI_URL_LOCAL}/api/articles?${params}`, {

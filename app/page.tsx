@@ -5,7 +5,7 @@ import globalClasses from "./globals.module.css";
 import { fetchLatestArticle, fetchProfilePicURL, fetchProjectsIDs } from "./lib/data";
 import SlidingStrings from "./ui/components/SlidingStrings";
 import { Container, Group } from "@mantine/core";
-import { IconBrandYoutubeFilled, IconUser } from "@tabler/icons-react";
+import { IconBrandYoutubeFilled } from "@tabler/icons-react";
 import { contacts, professions, technologies } from './ui/components/Constants';
 import TechList from './ui/components/TechList';
 import { ArticleCardSkeleton, ProjectCardSkeleton } from './ui/components/skeletons/Skeletons';

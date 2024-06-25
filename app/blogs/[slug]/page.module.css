@@ -22,13 +22,13 @@
 
 .markdown a {
   font-weight: bold;
-  color: var(--mantine-primary-color-filled);
+  color: var(--mantine-primary-color-0);
   text-decoration: underline;
 }
 
 .markdown figure {
   margin: 0;
-  max-width: fit-content;
+  max-width: 100%;
 }
 
 .markdown {
@@ -48,4 +48,10 @@
 
 .subtitle {
   font-weight: normal;
+}
+
+.views {
+  text-align: right;
+  font-weight: bold;
+  font-size: small;
 }
