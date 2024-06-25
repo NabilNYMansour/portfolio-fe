@@ -101,8 +101,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <Divider />
       <br />
       <Group justify='center'>
-        {info.tags && info.tags.map((tag: string) => (
-          <Badge size='lg'>
+        {info.tags.map((tag: string, i: number) => (
+          <Badge key={i} size='lg'>
             {tag}
           </Badge>
         ))}
