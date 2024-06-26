@@ -11,7 +11,7 @@ import {
 import classes from './card.module.css';
 import cx from 'clsx';
 
-import { fetchProject } from '@/app/lib/data';
+import { fetchProject } from '@/lib/data';
 import Image from 'next/image';
 import { IconBrandGithub, IconLink, IconBrandYoutubeFilled } from '@tabler/icons-react';
 import { SteamIcon } from '../../icons/CustomIcons';

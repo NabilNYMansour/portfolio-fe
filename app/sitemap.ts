@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { fetchArticlesSlugs, fetchProjectsLinks } from './lib/data'
+import { fetchArticlesSlugs, fetchProjectsLinks } from '@/lib/data'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [articlesSlugs, projectLinks] = await Promise.all([

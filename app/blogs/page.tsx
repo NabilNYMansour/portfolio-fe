@@ -1,7 +1,7 @@
 import { ArticleCardSkeleton } from "../ui/components/skeletons/Skeletons";
 import { Container, Group } from "@mantine/core";
 import globalClasses from "@/app/globals.module.css";
-import { fetchArticle, fetchArticlesIDs } from "../lib/data";
+import { fetchArticle, fetchArticlesIDs } from "@/lib/data";
 import { Suspense } from "react";
 import { ArticleCard } from "../ui/components/cards/ArticleCard";
 

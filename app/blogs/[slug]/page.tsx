@@ -1,4 +1,4 @@
-import { fetchArticleFull } from '@/app/lib/data';
+import { fetchArticleFull } from '@/lib/data';
 import { Badge, Container, Divider, Group, TypographyStylesProvider } from '@mantine/core';
 import { unified } from "unified";
 import remarkParse from "remark-parse";

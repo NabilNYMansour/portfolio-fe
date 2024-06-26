@@ -2,7 +2,7 @@ import cx from 'clsx';
 import Image from "next/image";
 import classes from "./home.module.css";
 import globalClasses from "./globals.module.css";
-import { fetchLatestArticle, fetchProfilePicURL, fetchProjectsIDs } from "./lib/data";
+import { fetchLatestArticle, fetchProfilePicURL, fetchProjectsIDs } from "@/lib/data";
 import SlidingStrings from "./ui/components/SlidingStrings";
 import { Container, Group } from "@mantine/core";
 import { IconBrandYoutubeFilled } from "@tabler/icons-react";

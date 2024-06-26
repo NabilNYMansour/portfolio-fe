@@ -1,7 +1,6 @@
 import { ProjectCardSkeleton } from "../ui/components/skeletons/Skeletons";
 import { Group } from "@mantine/core";
-import globalClasses from "@/app/globals.module.css";
-import { fetchProjectsIDs } from "../lib/data";
+import { fetchProjectsIDs } from "@/lib/data";
 import { Suspense } from "react";
 import { ProjectCard } from "../ui/components/cards/ProjectCard";
 
