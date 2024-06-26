@@ -39,7 +39,7 @@ export async function generateMetadata(
   }
 }
 
-function addClassToParagraphWithImage() {
+function addStyleToParagraphWithImage() {
   return (tree: any) => {
     visit(tree, 'element', (node) => {
       if (node.tagName === 'p') {
@@ -58,7 +58,7 @@ async function markdownToHtml(markdown: string) {
     .use(remarkParse)
     .use(remarkRehype, { allowDangerousHtml: true }) // Enable dangerous HTML in remark-rehype
     .use(rehypeRaw) // Process raw HTML (including iframes)
-    .use(addClassToParagraphWithImage) // Add custom class plugin
+    .use(addStyleToParagraphWithImage) // Add custom class plugin
     .use(rehypePrettyCode, {
       grid: true,
       theme: "one-dark-pro",
