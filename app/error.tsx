@@ -19,7 +19,6 @@ export default function Error({ error, reset }: {
         </Text>
         <Group justify="center">
           <Button variant='white'
-            // gradient={{ from: 'main.6', to: 'main.9', deg: 90 }}
             size="md"
             onClick={
               () => reset()
