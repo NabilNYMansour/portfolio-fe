@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next'
 import { fetchArticlesSlugs, fetchProjectsLinks } from '@/lib/data'
 
+const MAIN_URL = process.env.MAIN_URL;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [articlesSlugs, projectLinks] = await Promise.all([
     fetchArticlesSlugs(),
@@ -9,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const articlesUrls = articlesSlugs.map((slug: string) => {
     return {
-      url: `${process.env.MAIN_URL}/blogs/${slug}`,
+      url: `${MAIN_URL}/blogs/${slug}`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
@@ -27,26 +29,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: `${process.env.MAIN_URL}`,
+      url: `${MAIN_URL}`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 1,
     },
     {
-      url: `${process.env.MAIN_URL}/NNYM_Resume.pdf`,
+      url: `${MAIN_URL}/NNYM_Resume.pdf`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${process.env.MAIN_URL}/blogs`,
+      url: `${MAIN_URL}/blogs`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     ...articlesUrls,
     {
-      url: `${process.env.MAIN_URL}/projects`,
+      url: `${MAIN_URL}/projects`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

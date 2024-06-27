@@ -16,6 +16,7 @@ export async function generateMetadata(
   { params }: { params: { slug: string } }
 ): Promise<Metadata> {
   // Another fetch request is inevitable here, as we need to get the article's title and subtitle
+  // in the case of someone copying the URL and sharing it on social media.
   const info = await fetchArticleFull(params.slug, true);
   return {
     title: info.title,
@@ -35,7 +36,13 @@ export async function generateMetadata(
           alt: info.title,
         },
       ],
-    }
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: info.title,
+      description: info.subtitle,
+      images: info.banner,
+    },
   }
 }
 

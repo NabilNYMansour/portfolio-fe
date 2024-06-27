@@ -10,29 +10,42 @@ import localFont from 'next/font/local';
 import cx from 'clsx';
 
 const CaviarDreams = localFont({ src: '../public/CaviarDreams.ttf' })
+const description = "Software Engineer, GPU Programmer, FullStack developer, and YouTuber based in Toronto.";
+const MAIN_URL = process.env.MAIN_URL;
 
 export const metadata: Metadata = {
   title: {
     default: "Nabil Mansour's Portfolio",
     template: "%s | Nabil Mansour's Portfolio",
   },
-  description: "Software Engineer, GPU Programmer, Web developer, and YouTuber based in Toronto.",
+  description: description,
   alternates: {
-    canonical: `${process.env.MAIN_URL}`
+    canonical: `${MAIN_URL}`
   },
   keywords: "Nabil Mansour, Software Developer, FullStack Developer, Portfolio, Toronto, GPU Programmer, Shaderman",
   openGraph: {
     title: "Nabil Mansour's Portfolio",
-    description: "Software Engineer, GPU Programmer, Web developer, and YouTuber based in Toronto.",
-    url: `${process.env.MAIN_URL}`,
+    description: description,
+    url: `${MAIN_URL}`,
     type: "website",
     images: [
       {
-        url: `${process.env.MAIN_URL}/tree.png`,
+        url: `${MAIN_URL}/tree.png`,
         alt: "Nabil Mansour's Portfolio",
       },
     ],
+    locale: 'en_US',
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nabil Mansour's Portfolio",
+    description: description,
+    images: [`${MAIN_URL}/tree.png`],
+  },
+  authors: { name: "Nabil Mansour" },
+  creator: "Nabil Mansour",
+  publisher: "Nabil Mansour",
+  manifest: `${MAIN_URL}/manifest.json`,
 };
 
 export default function RootLayout({
@@ -44,12 +57,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href={`${MAIN_URL}/favicon.ico`} />
+        <link rel="apple-touch-icon" href={`${MAIN_URL}/tree.png`} />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=yes"
         />
-        <meta name="author" content="Nabil Mansour" />
         <meta name="google-site-verification" content="xo1VazvNYArvSzplJEq1l1QRWF_Xc30IAmCDBRKY8TA" />
       </head>
       <body className={cx(classes.body, CaviarDreams.className)}>

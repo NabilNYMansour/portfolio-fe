@@ -14,10 +14,8 @@ import { ArticleCard } from './ui/components/cards/ArticleCard';
 import { ProjectCard } from './ui/components/cards/ProjectCard';
 
 export default async function HomePage() {
-  const [profilePicUrl, highlightedProjectsIDs] = await Promise.all([
-    fetchProfilePicURL(),
-    fetchProjectsIDs(true)
-  ]);
+  const profilePicUrl = await fetchProfilePicURL();
+  const highlightedProjectsIDs = await fetchProjectsIDs(true);
   const youtubeLink = contacts.find(contact => contact.title === "YouTube")!.link;
   return (
     <Container size="lg" className={globalClasses.centerContainer}>

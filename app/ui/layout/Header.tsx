@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Container, Group, Burger, Drawer, ActionIcon, Flex, Tooltip, Text, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ThemeToggle } from '../components/ThemeToggle';
@@ -68,6 +68,7 @@ const HeaderDrawer = ({ opened, toggle, active, setActive }:
               direction="column"
               wrap="wrap"
               style={{ paddingTop: "1rem" }}
+              gap={5}
             >
               <Links active={active} setActive={setActive} opened={opened} toggle={toggle} />
             </Flex>
