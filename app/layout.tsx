@@ -10,6 +10,7 @@ import localFont from 'next/font/local';
 import cx from 'clsx';
 
 const CaviarDreams = localFont({ src: '../public/CaviarDreams.ttf' })
+
 const description = "Software Engineer, GPU Programmer, FullStack developer, and YouTuber based in Toronto.";
 const MAIN_URL = process.env.MAIN_URL;
 
