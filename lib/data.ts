@@ -1,3 +1,5 @@
+"use server";
+
 import axios from 'axios';
 import { unstable_noStore as noStore } from 'next/cache';
 import { notFound } from 'next/navigation';
