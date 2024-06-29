@@ -13,7 +13,7 @@ const CaviarDreams = localFont({ src: '../public/CaviarDreams.ttf' })
 
 const description = "Software Engineer, GPU Programmer, FullStack developer, and YouTuber based in Toronto.";
 const title = "Nabil Mansour's Portfolio";
-const author = "Nabil Mansour"
+const author = "Nabil Mansour";
 
 const MAIN_URL = process.env.MAIN_URL;
 
