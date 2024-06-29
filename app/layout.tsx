@@ -12,12 +12,15 @@ import cx from 'clsx';
 const CaviarDreams = localFont({ src: '../public/CaviarDreams.ttf' })
 
 const description = "Software Engineer, GPU Programmer, FullStack developer, and YouTuber based in Toronto.";
+const title = "Nabil Mansour's Portfolio";
+const author = "Nabil Mansour"
+
 const MAIN_URL = process.env.MAIN_URL;
 
 export const metadata: Metadata = {
   title: {
-    default: "Nabil Mansour's Portfolio",
-    template: "%s | Nabil Mansour's Portfolio",
+    default: title,
+    template: "%s | " + title,
   },
   description: description,
   alternates: {
@@ -25,27 +28,27 @@ export const metadata: Metadata = {
   },
   keywords: "Nabil Mansour, Software Developer, FullStack Developer, Portfolio, Toronto, GPU Programmer, Shaderman",
   openGraph: {
-    title: "Nabil Mansour's Portfolio",
+    title: title,
     description: description,
     url: `${MAIN_URL}`,
     type: "website",
     images: [
       {
         url: `${MAIN_URL}/tree.png`,
-        alt: "Nabil Mansour's Portfolio",
+        alt: title,
       },
     ],
     locale: 'en_US',
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nabil Mansour's Portfolio",
+    title: title,
     description: description,
     images: [`${MAIN_URL}/tree.png`],
   },
-  authors: { name: "Nabil Mansour" },
-  creator: "Nabil Mansour",
-  publisher: "Nabil Mansour",
+  authors: { name: author },
+  creator: author,
+  publisher: author,
   manifest: `${MAIN_URL}/manifest.json`,
 };
 
