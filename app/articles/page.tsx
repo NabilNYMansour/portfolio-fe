@@ -6,13 +6,13 @@ import { Suspense } from "react";
 import { ArticleCard } from "../ui/components/cards/ArticleCard";
 
 
-const Blogs = async () => {
+const Articles = async () => {
   const articlesIDs = await fetchArticlesIDs();
   return (
     <>
       <Container size="xs" className={globalClasses.centerContainer} m={0} p={0}>
         <h1>
-          Blogs 🖊️
+          Articles 🖊️
         </h1>
         <p>
           Ill be writing about what I discover here so stay tuned!
@@ -29,4 +29,4 @@ const Blogs = async () => {
   );
 };
 
-export default Blogs;
+export default Articles;

@@ -50,7 +50,7 @@ export default async function HomePage() {
           Devlogs to Tutorials (to whatever I&apos;m interested in at the moment 🤔).
         </p>
         <p>
-          From time to time, I like to write about my learning experiences and thoughts on my blog
+          From time to time, I like to write articles about things I&apos;ve learned or experimented with 
           (which you can find on this website). Here is my latest post:
         </p>
         <Suspense fallback={<ArticleCardSkeleton />}>

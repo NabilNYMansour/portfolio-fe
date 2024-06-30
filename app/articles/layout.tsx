@@ -3,10 +3,10 @@ import globalClasses from "@/app/globals.module.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blogs",
+  title: "Articles",
   description: "Where I write about what I've learned and what I'm working on (and whatever else I encounter).",
   alternates: {
-    canonical: `${process.env.MAIN_URL}/blogs`
+    canonical: `${process.env.MAIN_URL}/articles`
   }
 };
 

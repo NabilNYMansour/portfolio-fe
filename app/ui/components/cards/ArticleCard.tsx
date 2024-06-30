@@ -13,7 +13,7 @@ export async function ArticleCard({ fetchArticle, params }:
 
   return (
     <Group m={0} p={0}>
-      <Link className={classes.link} href={`/blogs/${info.slug}`}>
+      <Link className={classes.link} href={`/articles/${info.slug}`}>
         <Card shadow="xs" withBorder m={0} p={0} className={classes.main}>
           <div className={classes.image}>
             <Image

@@ -3,7 +3,7 @@ import { MediumIcon, ShaderToyIcon } from '../icons/CustomIcons';
 
 export const links = [
   { link: '/', label: 'Home' },
-  { link: '/blogs', label: 'Blogs' },
+  { link: '/articles', label: 'Articles' },
   // { link: '/work', label: 'Work' },
   { link: '/projects', label: 'Projects' },
   // { link: '/shaders', label: 'Shaders' },

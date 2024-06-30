@@ -22,13 +22,13 @@ export async function generateMetadata(
     title: info.title,
     description: info.subtitle,
     alternates: {
-      canonical: `${process.env.MAIN_URL}/blogs/${params.slug}`
+      canonical: `${process.env.MAIN_URL}/articles/${params.slug}`
     },
     keywords: info.tags.join(', '),
     openGraph: {
       title: info.title,
       description: info.subtitle,
-      url: `${process.env.MAIN_URL}/blogs/${params.slug}`,
+      url: `${process.env.MAIN_URL}/articles/${params.slug}`,
       type: "article",
       images: [
         {
