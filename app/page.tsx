@@ -4,7 +4,7 @@ import classes from "./home.module.css";
 import globalClasses from "./globals.module.css";
 import { fetchLatestArticle, fetchProfilePicURL, fetchProjectsIDs } from "@/lib/data";
 import SlidingStrings from "./ui/components/SlidingStrings";
-import { Container, Group } from "@mantine/core";
+import { Badge, Container, Group } from "@mantine/core";
 import { IconBrandYoutubeFilled } from "@tabler/icons-react";
 import { contacts, professions, technologies } from './ui/components/Constants';
 import TechList from './ui/components/TechList';
@@ -12,6 +12,8 @@ import { ArticleCardSkeleton, ProjectCardSkeleton } from './ui/components/skelet
 import { Suspense } from 'react';
 import { ArticleCard } from './ui/components/cards/ArticleCard';
 import { ProjectCard } from './ui/components/cards/ProjectCard';
+import { ImYoutube2 } from 'react-icons/im';
+import { FaYoutube } from 'react-icons/fa';
 
 export default async function HomePage() {
   const profilePicUrl = await fetchProfilePicURL();
@@ -19,6 +21,16 @@ export default async function HomePage() {
   const youtubeLink = contacts.find(contact => contact.title === "YouTube")!.link;
   return (
     <Container size="lg" className={globalClasses.centerContainer}>
+      <div className={classes.backgroundImageWrapper}>
+        <Image
+          priority
+          src={"/treeHuge.png"}
+          alt="Mandelbrot tree"
+          width={1920} height={1080}
+          className={classes.backgroundImage}
+        />
+      </div>
+      <div className={classes.backgroundOverlay} />
       <Container size="xs" className={globalClasses.centerContainer} m={0} p={0}>
         <h1>
           Hi <span className={classes.wave}>👋</span>,
@@ -43,14 +55,14 @@ export default async function HomePage() {
           >Web Technologies</span> and <span className={classes.important}
           >Graphics</span>.
         </p>
-        <p>
-          I also create videos on <a className={cx(classes.important, classes.youtubeAnchor)}
+        <div>
+          I also create videos on <a 
             href={youtubeLink} target="_blank" rel="noopener noreferrer"
-          ><IconBrandYoutubeFilled size={12} /> Youtube</a> ranging from
+          ><Badge size="xl" color="red" tt="none" leftSection={<FaYoutube />}>YouTube</Badge></a> ranging from
           Devlogs to Tutorials (to whatever I&apos;m interested in at the moment 🤔).
-        </p>
+        </div>
         <p>
-          From time to time, I like to write articles about things I&apos;ve learned or experimented with 
+          From time to time, I like to write articles about things I&apos;ve learned or experimented with
           (which you can find on this website). Here is my latest post:
         </p>
         <Suspense fallback={<ArticleCardSkeleton />}>

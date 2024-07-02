@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Container, Group, Burger, Drawer, ActionIcon, Flex, Tooltip, Text, Button } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useHover } from '@mantine/hooks';
 import { ThemeToggle } from '../components/ThemeToggle';
 import classes from './Header.module.css';
 import { contacts, links } from '../components/Constants';
@@ -48,7 +48,6 @@ const Contacts = () => {
         {contact.icon}
       </ActionIcon>
     </Tooltip>
-
   ))
 };
 const HeaderDrawer = ({ opened, toggle, active, setActive }:
@@ -92,6 +91,7 @@ export function Header() {
   const [checkHeader, setCheckHeader] = useState(true);
   const [scrollDir, setScrollDir] = useState<'up' | 'down'>('up');
   const prevScrollVal = useRef(0);
+  const headerHover = useHover();
 
   useEffect(() => {
     setActive(currPath);
@@ -133,7 +133,9 @@ export function Header() {
     return () => clearInterval(intervalID);
   }, [checkHeader, scrollDir]);
 
-
+  useEffect(() => {
+    setScrollDir("up");
+  }, [headerHover.hovered]);
 
   const slideUp = {
     transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-100%)',
@@ -141,26 +143,30 @@ export function Header() {
   };
 
   return (
-    <header className={classes.header} style={slideUp}>
-      <Container size="xl" className={classes.inner}>
-        {/* Desktop */}
-        <Group gap={5} visibleFrom="xl" w={"33%"} justify='center'>
-          <Links active={active} setActive={setActive} opened={opened} toggle={toggle} />
-        </Group>
+    <header>
+      <div ref={headerHover.ref} className={classes.rootHeader}>
+        <div className={classes.header} style={slideUp} >
+          <Container size="xl" className={classes.inner}>
+            {/* Desktop */}
+            <Group gap={5} visibleFrom="xl" w={"33%"} justify='center'>
+              <Links active={active} setActive={setActive} opened={opened} toggle={toggle} />
+            </Group>
 
-        <Container visibleFrom="xl" w={"33%"}>
-          <ThemeToggle />
-        </Container>
+            <Container visibleFrom="xl" w={"33%"}>
+              <ThemeToggle />
+            </Container>
 
-        <Group gap={5} visibleFrom="xl" w={"33%"} justify='center'>
-          <Contacts />
-        </Group>
+            <Group gap={5} visibleFrom="xl" w={"33%"} justify='center'>
+              <Contacts />
+            </Group>
 
-        {/* Mobile */}
-        <Burger aria-label="Toggle navigation" onClick={toggle} hiddenFrom="xl" size="sm" />
-        <ThemeToggle hiddenFrom="xl" />
-        <HeaderDrawer opened={opened} toggle={toggle} active={active} setActive={setActive} />
-      </Container>
+            {/* Mobile */}
+            <Burger aria-label="Toggle navigation" onClick={toggle} hiddenFrom="xl" size="sm" />
+            <ThemeToggle hiddenFrom="xl" />
+            <HeaderDrawer opened={opened} toggle={toggle} active={active} setActive={setActive} />
+          </Container>
+        </div>
+      </div>
     </header>
   );
 }

@@ -11,7 +11,7 @@
 
 .link {
   text-decoration: none;
-  color: var(--mantine-primary-color);
+  color: inherit;
 }
 
 .image {

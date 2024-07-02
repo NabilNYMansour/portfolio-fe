@@ -22,7 +22,7 @@
 
 .markdown a {
   font-weight: bold;
-  color: var(--mantine-primary-color-0);
+  color: inherit;
   text-decoration: underline;
 }
 

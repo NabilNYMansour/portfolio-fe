@@ -9,7 +9,7 @@ import classes from "./home.module.css";
 import localFont from 'next/font/local';
 import cx from 'clsx';
 
-const CaviarDreams = localFont({ src: '../public/CaviarDreams.ttf' })
+const CaviarDreams = localFont({ src: '../public/CaviarDreams.ttf' });
 
 const description = "Software Engineer, GPU Programmer, FullStack developer, and YouTuber based in Toronto.";
 const title = "Nabil Mansour's Portfolio";
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${MAIN_URL}/tree.png`,
+        url: `${MAIN_URL}/treeBig.png`,
         alt: title,
       },
     ],
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: title,
     description: description,
-    images: [`${MAIN_URL}/tree.png`],
+    images: [`${MAIN_URL}/treeBig.png`],
   },
   authors: { name: author },
   creator: author,
@@ -62,12 +62,11 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
         <link rel="shortcut icon" href={`${MAIN_URL}/favicon.ico`} />
-        <link rel="apple-touch-icon" href={`${MAIN_URL}/tree.png`} />
+        <link rel="apple-touch-icon" href={`${MAIN_URL}/favicon.ico`} />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=yes"
         />
-        <meta name="google-site-verification" content="xo1VazvNYArvSzplJEq1l1QRWF_Xc30IAmCDBRKY8TA" />
       </head>
       <body className={cx(classes.body, CaviarDreams.className)}>
         <MantineProvider defaultColorScheme="dark" theme={theme}>
