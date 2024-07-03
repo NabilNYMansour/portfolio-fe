@@ -1,70 +1,32 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import { Container, Group, Burger, Drawer, ActionIcon, Flex, Tooltip, Text, Button, UnstyledButton } from '@mantine/core';
+import { Container, Group, Burger, Drawer, ActionIcon, Flex, Tooltip, Text, Button } from '@mantine/core';
 import { useDisclosure, useHover } from '@mantine/hooks';
 import { ThemeToggle } from '../components/buttons/ThemeToggle';
 import classes from './Header.module.css';
 import { contacts, links } from '../components/Constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FloatingIndicator } from '@mantine/core';
 
-function FloatingLinks({ direction, opened, toggle }: {
-  direction: "row" | "column",
-  opened: boolean, toggle: () => void
-}) {
-  const currPath = usePathname();
-  const [rootRef, setRootRef] = useState<HTMLDivElement | null>(null);
-  const [controlsRefs, setControlsRefs] = useState<Record<string, HTMLButtonElement | null>>({});
-  const [active, setActive] = useState(links.findIndex((item) => item.link === currPath));
-  const [loading, setLoading] = useState(true); // to make sure index 0 is filled before indicator is loaded
-
-  useEffect(() => { // after rendering, loading is set to false as indicator is loaded
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    setActive(links.findIndex((item) => item.link === currPath));
-  }, [currPath]);
-
-  const setControlRef = (index: number) => (node: HTMLButtonElement) => {
-    controlsRefs[index] = node;
-    setControlsRefs(controlsRefs);
-  };
-
-  const getVariant = (index: number) => {
-    if (direction === 'column') {
-      return active === index ? 'filled' : 'subtle';
-    } else if (loading && active === index) {
-      return 'filled';
-    } else {
-      return "subtle";
-    }
-  }
-
-  const controls = links.map((item, index) => (
-    <Link key={item.label} href={item.link} className={classes.link}>
+const Links = ({ active, setActive, opened, toggle }:
+  { active: string, setActive: (arg0: string) => void, opened: boolean, toggle: () => void }) => {
+  return links.map((link) => (
+    <Link key={link.label} href={link.link} className={classes.link}>
       <Button
-        className={classes.control}
-        key={item.label} ref={setControlRef(index)}
-        onClick={() => { setActive(index); opened && toggle(); }}
-        variant={getVariant(index)} size="xs" fz="sm"
-        c={active === index ? 'white' : undefined}>
-        <span className={classes.controlLabel}>{item.label}</span>
+        key={link.label}
+        size="xs"
+        fz="sm"
+        onClick={() => {
+          setActive(link.link);
+          opened && toggle();
+        }}
+        variant={active === link.link ? 'filled' : 'subtle'}
+      >
+        {link.label}
       </Button>
-    </Link >
-  ));
-
-  return (
-    <Flex direction={direction} gap={5} pos="relative" ref={setRootRef}>
-      {controls}
-      {direction === 'row' &&
-        <FloatingIndicator className={classes.indicator}
-          target={controlsRefs[active]} parent={rootRef} />
-      }
-    </Flex>
-  );
+    </Link>
+  ))
 };
 const Contacts = () => {
   return contacts.map((contact) => (
@@ -88,8 +50,8 @@ const Contacts = () => {
     </Tooltip>
   ))
 };
-const HeaderDrawer = ({ opened, toggle }:
-  { opened: boolean, toggle: () => void }
+const HeaderDrawer = ({ opened, toggle, active, setActive }:
+  { opened: boolean, toggle: () => void, active: string, setActive: (arg0: string) => void }
 ) => {
   return <Drawer.Root opened={opened} hiddenFrom="xl" onClose={toggle}>
     <Drawer.Overlay />
@@ -101,8 +63,13 @@ const HeaderDrawer = ({ opened, toggle }:
         </Drawer.Header>
         <Drawer.Body style={{ flexGrow: 1 }}>
           <Flex direction="column" wrap="wrap" justify="space-between" style={{ height: "100%" }}>
-            <Flex direction="column" pt="1rem">
-              <FloatingLinks direction='column' opened={opened} toggle={toggle} />
+            <Flex
+              direction="column"
+              wrap="wrap"
+              style={{ paddingTop: "1rem" }}
+              gap={5}
+            >
+              <Links active={active} setActive={setActive} opened={opened} toggle={toggle} />
             </Flex>
             <Group
               justify='center'
@@ -117,12 +84,19 @@ const HeaderDrawer = ({ opened, toggle }:
 };
 
 export function Header() {
+  const currPath = usePathname();
   const [opened, { toggle }] = useDisclosure(false);
+  const [active, setActive] = useState(currPath);
   const [isHeaderVisible, setHeaderVisible] = useState(true);
   const [checkHeader, setCheckHeader] = useState(true);
   const [scrollDir, setScrollDir] = useState<'up' | 'down'>('up');
   const prevScrollVal = useRef(0);
   const headerHover = useHover();
+
+  useEffect(() => {
+    setActive(currPath);
+    prevScrollVal.current = window.scrollY;
+  }, [currPath]);
 
   const handleScroll = () => {
     if (window.scrollY < 350) {
@@ -164,7 +138,7 @@ export function Header() {
   }, [headerHover.hovered]);
 
   const slideUp = {
-    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-90%)',
+    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-70%)',
     transition: "transform ease 0.25s"
   };
 
@@ -174,8 +148,8 @@ export function Header() {
         <div className={classes.header} style={slideUp} >
           <Container size="xl" className={classes.inner}>
             {/* Desktop */}
-            <Group visibleFrom="xl" w={"33%"} justify='center'>
-              <FloatingLinks direction='row' opened={opened} toggle={toggle} />
+            <Group gap={5} visibleFrom="xl" w={"33%"} justify='center'>
+              <Links active={active} setActive={setActive} opened={opened} toggle={toggle} />
             </Group>
 
             <Container visibleFrom="xl" w={"33%"}>
@@ -189,7 +163,7 @@ export function Header() {
             {/* Mobile */}
             <Burger aria-label="Toggle navigation" onClick={toggle} hiddenFrom="xl" size="sm" />
             <ThemeToggle hiddenFrom="xl" />
-            <HeaderDrawer opened={opened} toggle={toggle} />
+            <HeaderDrawer opened={opened} toggle={toggle} active={active} setActive={setActive} />
           </Container>
         </div>
       </div>
