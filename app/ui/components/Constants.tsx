@@ -38,7 +38,7 @@ export const contacts = [
     icon: <ShaderToyIcon size={28} />,
   },
   {
-    link: "NNYM_Resume.pdf",
+    link: "/NNYM_Resume.pdf",
     title: "Resume",
     icon: <GrDocumentUser size={24} />,
   },
