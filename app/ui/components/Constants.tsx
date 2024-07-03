@@ -1,5 +1,8 @@
-import { IconBrandCSharp, IconBrandCpp, IconBrandGithub, IconBrandJavascript, IconBrandLinkedin, IconBrandMantine, IconBrandMysql, IconBrandPython, IconBrandReact, IconBrandThreejs, IconBrandTypescript, IconBrandUnity, IconBrandYoutubeFilled, IconFileCv, IconMailFilled } from '@tabler/icons-react';
 import { MediumIcon, ShaderToyIcon } from '../icons/CustomIcons';
+import { AiFillGithub } from 'react-icons/ai';
+import { FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { GrDocumentUser } from 'react-icons/gr';
+import { MdEmail } from 'react-icons/md';
 
 export const links = [
   { link: '/', label: 'Home' },
@@ -12,37 +15,37 @@ export const contacts = [
   {
     link: "https://www.youtube.com/@nabilnymansour",
     title: "YouTube",
-    icon: <IconBrandYoutubeFilled size={28}/>,
+    icon: <FaYoutube size={28} />,
   },
   {
     link: "https://medium.com/@nabilnymansour",
     title: "Medium",
-    icon: <MediumIcon size={28}/>,
+    icon: <MediumIcon size={28} />,
   },
   {
     link: "https://www.linkedin.com/in/nnym/",
     title: "LinkedIn",
-    icon: <IconBrandLinkedin size={28} stroke={1.5} />,
+    icon: <FaLinkedin size={24} />,
   },
   {
     link: "https://github.com/NabilNYMansour",
     title: "GitHub",
-    icon: <IconBrandGithub size={28} stroke={1.5} />,
+    icon: <AiFillGithub size={28} />,
   },
   {
     link: "https://www.shadertoy.com/user/chickenlegs",
     title: "ShaderToy",
-    icon: <ShaderToyIcon size={28}/>,
+    icon: <ShaderToyIcon size={28} />,
   },
   {
     link: "NNYM_Resume.pdf",
     title: "Resume",
-    icon: <IconFileCv />,
+    icon: <GrDocumentUser size={24} />,
   },
   {
     link: "mailto:nabilnymansour@gmail.com",
     title: "Email",
-    icon: <IconMailFilled />,
+    icon: <MdEmail size={28}  />,
   },
 ];
 export const professions = ["Software Engineer", "Web Developer", "Graphics Programmer", "Content Creator"]

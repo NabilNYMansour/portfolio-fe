@@ -29,4 +29,5 @@ export const theme = createTheme({
   },
 
   primaryColor: "main",
+  primaryShade: 8,
 });

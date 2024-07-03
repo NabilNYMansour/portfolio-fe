@@ -26,3 +26,21 @@
   justify-content: center;
   text-decoration: none;
 }
+
+.control {
+  transition: color 100ms ease;
+}
+
+.controlLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.indicator {
+  background-color: var(--mantine-primary-color-filled);
+  border-radius: var(--mantine-radius-sm);
+
+  @mixin hover {
+    background-color: var(--mantine-primary-color-9);
+  }
+}

@@ -5,14 +5,12 @@ import globalClasses from "./globals.module.css";
 import { fetchLatestArticle, fetchProfilePicURL, fetchProjectsIDs } from "@/lib/data";
 import SlidingStrings from "./ui/components/SlidingStrings";
 import { Badge, Container, Group } from "@mantine/core";
-import { IconBrandYoutubeFilled } from "@tabler/icons-react";
 import { contacts, professions, technologies } from './ui/components/Constants';
 import TechList from './ui/components/TechList';
 import { ArticleCardSkeleton, ProjectCardSkeleton } from './ui/components/skeletons/Skeletons';
 import { Suspense } from 'react';
 import { ArticleCard } from './ui/components/cards/ArticleCard';
 import { ProjectCard } from './ui/components/cards/ProjectCard';
-import { ImYoutube2 } from 'react-icons/im';
 import { FaYoutube } from 'react-icons/fa';
 
 export default async function HomePage() {

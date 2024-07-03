@@ -61,12 +61,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
-        <link rel="shortcut icon" href={`${MAIN_URL}/favicon.ico`} />
-        <link rel="apple-touch-icon" href={`${MAIN_URL}/favicon.ico`} />
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=yes"
-        />
+        <link rel="shortcut icon" href={`/favicon.ico`} />
+        <link rel="apple-touch-icon" href={`/favicon.ico`} />
+        <meta name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=yes" />
       </head>
       <body className={cx(classes.body, CaviarDreams.className)}>
         <MantineProvider defaultColorScheme="dark" theme={theme}>
