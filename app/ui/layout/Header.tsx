@@ -25,8 +25,6 @@ function FloatingLinks({ direction, opened, toggle }: {
   }, []);
 
   useEffect(() => {
-    console.log(currPath);
-    console.log(active);
     setActive(links.findIndex((item) => item.link === currPath));
   }, [currPath]);
 
@@ -57,11 +55,6 @@ function FloatingLinks({ direction, opened, toggle }: {
       </Button>
     </Link >
   ));
-
-  useEffect(() => {
-    console.log(active);
-    
-  }, [active]);
 
   return (
     <Flex direction={direction} gap={5} pos="relative" ref={setRootRef}>
@@ -171,7 +164,7 @@ export function Header() {
   }, [headerHover.hovered]);
 
   const slideUp = {
-    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-100%)',
+    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-90%)',
     transition: "transform ease 0.25s"
   };
 
