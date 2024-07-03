@@ -9,7 +9,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import classes from "./page.module.css"
 import Image from 'next/image';
 import { Metadata } from 'next'
-import BuyMeCoffee from '@/app/ui/components/BuyMeCoffee';
+import BuyMeCoffee from '@/app/ui/components/buttons/BuyMeCoffee';
 import { visit } from 'unist-util-visit';
 
 export async function generateMetadata(

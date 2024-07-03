@@ -13,9 +13,11 @@ import cx from 'clsx';
 
 import { fetchProject } from '@/lib/data';
 import Image from 'next/image';
-import { IconBrandGithub, IconLink, IconBrandYoutubeFilled } from '@tabler/icons-react';
 import { SteamIcon } from '../../icons/CustomIcons';
 import Link from 'next/link';
+import { AiFillGithub } from 'react-icons/ai';
+import { FaYoutube } from 'react-icons/fa';
+import { RiLinkM } from 'react-icons/ri';
 
 const ButtonList = ({ link, gitLink, steamLink, youtubeLink }: {
   link?: string,
@@ -25,11 +27,11 @@ const ButtonList = ({ link, gitLink, steamLink, youtubeLink }: {
 }) => {
   const buttonListData = [{
     link: link,
-    icon: <IconLink />,
+    icon: <RiLinkM size={28} />,
     label: "Website Link"
   }, {
     link: gitLink,
-    icon: <IconBrandGithub />,
+    icon: <AiFillGithub size={28} />,
     label: "GitHub Link"
   }, {
     link: steamLink,
@@ -37,7 +39,7 @@ const ButtonList = ({ link, gitLink, steamLink, youtubeLink }: {
     label: "Steam Link"
   }, {
     link: youtubeLink,
-    icon: <IconBrandYoutubeFilled />,
+    icon: <FaYoutube size={28} />,
     label: "YouTube Link"
   }];
   const getButtonColor = (label: string) => {
@@ -101,8 +103,7 @@ export async function ProjectCard({ id }: { id: string }) {
               fill
               style={{
                 objectFit: 'cover',
-              }}
-            />
+              }}/>
           </div>
           <Stack gap={7.5} pl={15} pr={15} pb={0} pt={15}>
             <h2 className={classes.title} >{info.title}</h2>

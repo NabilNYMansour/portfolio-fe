@@ -3,27 +3,27 @@
 import { useEffect, useRef, useState } from 'react';
 import { Container, Group, Burger, Drawer, ActionIcon, Flex, Tooltip, Text, Button } from '@mantine/core';
 import { useDisclosure, useHover } from '@mantine/hooks';
-import { ThemeToggle } from '../components/ThemeToggle';
+import { ThemeToggle } from '../components/buttons/ThemeToggle';
 import classes from './Header.module.css';
 import { contacts, links } from '../components/Constants';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const Links = ({ active, setActive, opened, toggle }:
-  { active: string, setActive: (arg0: string) => void, opened: boolean, toggle: () => void }) => {
-  return links.map((link) => (
-    <Link key={link.label} href={link.link} className={classes.link}>
+const Links = ({ activeLink, setActiveLink, opened, toggle }:
+  { activeLink: string, setActiveLink: (link: string) => void, opened: boolean, toggle: () => void }) => {
+  return links.map((item) => (
+    <Link key={item.label} href={item.link} className={classes.link}>
       <Button
-        key={link.label}
+        key={item.label}
         size="xs"
         fz="sm"
         onClick={() => {
-          setActive(link.link);
+          setActiveLink(item.link);
           opened && toggle();
         }}
-        variant={active === link.link ? 'filled' : 'subtle'}
+        variant={activeLink === item.link ? 'filled' : 'subtle'}
       >
-        {link.label}
+        {item.label}
       </Button>
     </Link>
   ))
@@ -50,43 +50,36 @@ const Contacts = () => {
     </Tooltip>
   ))
 };
-const HeaderDrawer = ({ opened, toggle, active, setActive }:
-  { opened: boolean, toggle: () => void, active: string, setActive: (arg0: string) => void }
+const HeaderDrawer = ({ opened, toggle, activeLink, setActiveLink }:
+  { opened: boolean, toggle: () => void, activeLink: string, setActiveLink: (link: string) => void }
 ) => {
   return <Drawer.Root opened={opened} hiddenFrom="xl" onClose={toggle}>
     <Drawer.Overlay />
     <Drawer.Content>
-      <div style={{ display: "flex", height: "100vh", flexDirection: "column" }}>
+      <Flex h="100vh" direction="column">
         <Drawer.Header>
           <Drawer.Title>Portfolio</Drawer.Title>
           <Drawer.CloseButton />
         </Drawer.Header>
         <Drawer.Body style={{ flexGrow: 1 }}>
           <Flex direction="column" wrap="wrap" justify="space-between" style={{ height: "100%" }}>
-            <Flex
-              direction="column"
-              wrap="wrap"
-              style={{ paddingTop: "1rem" }}
-              gap={5}
-            >
-              <Links active={active} setActive={setActive} opened={opened} toggle={toggle} />
+            <Flex direction="column" wrap="wrap" style={{ paddingTop: "1rem" }} gap={5}>
+              <Links activeLink={activeLink} setActiveLink={setActiveLink} opened={opened} toggle={toggle} />
             </Flex>
-            <Group
-              justify='center'
-              gap={5}>
+            <Group justify='center' gap={5}>
               <Contacts />
             </Group>
           </Flex>
         </Drawer.Body>
-      </div>
+      </Flex>
     </Drawer.Content>
-  </Drawer.Root>
+  </Drawer.Root >
 };
 
 export function Header() {
   const currPath = usePathname();
   const [opened, { toggle }] = useDisclosure(false);
-  const [active, setActive] = useState(currPath);
+  const [activeLink, setActiveLink] = useState(currPath);
   const [isHeaderVisible, setHeaderVisible] = useState(true);
   const [checkHeader, setCheckHeader] = useState(true);
   const [scrollDir, setScrollDir] = useState<'up' | 'down'>('up');
@@ -94,7 +87,7 @@ export function Header() {
   const headerHover = useHover();
 
   useEffect(() => {
-    setActive(currPath);
+    setActiveLink(currPath);
     prevScrollVal.current = window.scrollY;
   }, [currPath]);
 
@@ -138,8 +131,8 @@ export function Header() {
   }, [headerHover.hovered]);
 
   const slideUp = {
-    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-100%)',
-    transition: "transform ease 0.1s"
+    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-80%)',
+    transition: "transform ease 0.25s"
   };
 
   return (
@@ -149,7 +142,7 @@ export function Header() {
           <Container size="xl" className={classes.inner}>
             {/* Desktop */}
             <Group gap={5} visibleFrom="xl" w={"33%"} justify='center'>
-              <Links active={active} setActive={setActive} opened={opened} toggle={toggle} />
+              <Links activeLink={activeLink} setActiveLink={setActiveLink} opened={opened} toggle={toggle} />
             </Group>
 
             <Container visibleFrom="xl" w={"33%"}>
@@ -163,7 +156,7 @@ export function Header() {
             {/* Mobile */}
             <Burger aria-label="Toggle navigation" onClick={toggle} hiddenFrom="xl" size="sm" />
             <ThemeToggle hiddenFrom="xl" />
-            <HeaderDrawer opened={opened} toggle={toggle} active={active} setActive={setActive} />
+            <HeaderDrawer opened={opened} toggle={toggle} activeLink={activeLink} setActiveLink={setActiveLink} />
           </Container>
         </div>
       </div>

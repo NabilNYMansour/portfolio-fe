@@ -1,7 +1,7 @@
 import cx from 'clsx';
 import { ActionIcon, useMantineColorScheme, useComputedColorScheme, Group, Tooltip, Text } from '@mantine/core';
-import { IconSun, IconMoon } from '@tabler/icons-react';
 import classes from './ThemeToggle.module.css';
+import { LuMoon, LuSun } from 'react-icons/lu';
 
 export function ThemeToggle({ ...props }) {
   // These are not hooks
@@ -21,8 +21,8 @@ export function ThemeToggle({ ...props }) {
           size="xl"
           aria-label="Toggle color scheme"
         >
-          <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
-          <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
+          <LuSun className={cx(classes.icon, classes.light)} />
+          <LuMoon className={cx(classes.icon, classes.dark)} />
         </ActionIcon>
       </Tooltip>
     </Group>
