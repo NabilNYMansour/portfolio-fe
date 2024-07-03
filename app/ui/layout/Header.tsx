@@ -131,7 +131,7 @@ export function Header() {
   }, [headerHover.hovered]);
 
   const slideUp = {
-    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-70%)',
+    transform: isHeaderVisible ? 'translateY(0)' : 'translateY(-80%)',
     transition: "transform ease 0.25s"
   };
 
