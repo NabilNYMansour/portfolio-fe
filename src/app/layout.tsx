@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { Header } from "./ui/layout/Header";
-import { theme } from "@/theme";
 import { Footer } from "./ui/layout/Footer";
 import classes from "./home.module.css";
 import localFont from 'next/font/local';
 import cx from 'clsx';
+import { theme } from "@/theme";
 
-const CaviarDreams = localFont({ src: '../public/CaviarDreams.ttf' });
+const CaviarDreams = localFont({ src: '../../public/CaviarDreams.ttf' });
 
 const description = "Software Engineer, GPU Programmer, FullStack developer, and YouTuber based in Toronto.";
 const title = "Nabil Mansour's Portfolio";

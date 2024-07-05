@@ -9,8 +9,8 @@ import rehypePrettyCode from "rehype-pretty-code";
 import classes from "./page.module.css"
 import Image from 'next/image';
 import { Metadata } from 'next'
-import BuyMeCoffee from '@/app/ui/components/buttons/BuyMeCoffee';
 import { visit } from 'unist-util-visit';
+import BuyMeCoffee from '@/app/ui/components/buttons/BuyMeCoffee';
 
 export async function generateMetadata(
   { params }: { params: { slug: string } }
