@@ -20,15 +20,7 @@ export default async function HomePage() {
   const youtubeLink = contacts.find(contact => contact.title === "YouTube")!.link;
   return (
     <Container size="lg" className={globalClasses.centerContainer}>
-      <div className={classes.backgroundImageWrapper}>
-        {/* <Image
-          priority
-          src={"/treeHuge.png"}
-          alt="Mandelbrot tree"
-          width={1920} height={1080}
-          className={classes.backgroundImage}
-        /> */}
-      </div>
+      <div className={classes.backgroundImage}/>
       <div className={classes.backgroundOverlay} />
       <Container size="xs" className={globalClasses.centerContainer} m={0} p={0}>
         <h1>
