@@ -77,14 +77,14 @@
 .backgroundImageWrapper {
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: -100;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   -webkit-mask-image: -webkit-gradient(
     linear,
     left top,

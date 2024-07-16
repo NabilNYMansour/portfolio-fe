@@ -17,12 +17,11 @@ const Links = ({ activeLink, setActiveLink, opened, toggle }:
         key={item.label}
         size="xs"
         fz="sm"
+        variant={activeLink === item.link ? 'filled' : 'subtle'}
         onClick={() => {
           setActiveLink(item.link);
           opened && toggle();
-        }}
-        variant={activeLink === item.link ? 'filled' : 'subtle'}
-      >
+        }}>
         {item.label}
       </Button>
     </Link>
