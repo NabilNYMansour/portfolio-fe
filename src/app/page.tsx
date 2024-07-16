@@ -1,4 +1,3 @@
-import cx from 'clsx';
 import Image from "next/image";
 import classes from "./home.module.css";
 import globalClasses from "./globals.module.css";
@@ -12,7 +11,6 @@ import { Suspense } from 'react';
 import { ArticleCard } from './ui/components/cards/ArticleCard';
 import { ProjectCard } from './ui/components/cards/ProjectCard';
 import { FaYoutube } from 'react-icons/fa';
-import mandleTree from '@/../public/treeHuge.png';
 
 export default async function HomePage() {
   const profilePicUrl = await fetchProfilePicURL();
@@ -21,7 +19,6 @@ export default async function HomePage() {
   return (
     <Container size="lg" className={globalClasses.centerContainer}>
       <div className={classes.backgroundImage}/>
-      <div className={classes.backgroundOverlay} />
       <Container size="xs" className={globalClasses.centerContainer} m={0} p={0}>
         <h1>
           Hi <span className={classes.wave}>👋</span>,
