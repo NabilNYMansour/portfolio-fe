@@ -1,5 +1,4 @@
 import { Container } from "@mantine/core";
-import classes from "./BuyMeCoffee.module.css";
 import CoolButton from "./CoolButton";
 
 const BuyMeCoffee = () => {

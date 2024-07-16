@@ -75,6 +75,9 @@
 }
 
 .backgroundImageWrapper {
+  background-image: url('../../public/treeHuge.png');
+  background-size: cover;
+
   height: 100%;
   width: 100%;
   position: fixed;
@@ -82,22 +85,5 @@
   right: 0;
   left: 0;
   z-index: -100;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  -webkit-mask-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(rgba(0, 0, 0, 0.3)),
-    to(rgba(0, 0, 0, 0))
-  );
-  overflow: hidden;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-}
-
-.backgroundImage {
-  position: relative;
-  width: 1920px;
-  height: 1080px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(230, 206, 206, 0));
 }

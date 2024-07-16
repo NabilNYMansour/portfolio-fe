@@ -12,6 +12,7 @@ import { Suspense } from 'react';
 import { ArticleCard } from './ui/components/cards/ArticleCard';
 import { ProjectCard } from './ui/components/cards/ProjectCard';
 import { FaYoutube } from 'react-icons/fa';
+import mandleTree from '@/../public/treeHuge.png';
 
 export default async function HomePage() {
   const profilePicUrl = await fetchProfilePicURL();
@@ -20,13 +21,13 @@ export default async function HomePage() {
   return (
     <Container size="lg" className={globalClasses.centerContainer}>
       <div className={classes.backgroundImageWrapper}>
-        <Image
+        {/* <Image
           priority
           src={"/treeHuge.png"}
           alt="Mandelbrot tree"
           width={1920} height={1080}
           className={classes.backgroundImage}
-        />
+        /> */}
       </div>
       <div className={classes.backgroundOverlay} />
       <Container size="xs" className={globalClasses.centerContainer} m={0} p={0}>
@@ -54,7 +55,7 @@ export default async function HomePage() {
           >Graphics</span>.
         </p>
         <div>
-          I also create videos on <a 
+          I also create videos on <a
             href={youtubeLink} target="_blank" rel="noopener noreferrer"
           ><Badge size="xl" color="red" tt="none" leftSection={<FaYoutube />}>YouTube</Badge></a> ranging from
           Devlogs to Tutorials (to whatever I&apos;m interested in at the moment 🤔).
