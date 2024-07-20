@@ -1,11 +1,12 @@
 .main {
   background-color: var(--mantine-primary-color-light);
 
+  transition: all 0.15s ease-in-out;
+
   @mixin hover {
-    background-color: light-dark(
-      var(--mantine-color-body),
-      var(--mantine-color-main-dark-9)
-    );
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px light-dark(black, white);
+    background-color: light-dark(#EEEEF1, #5A586F);
   }
 }
 

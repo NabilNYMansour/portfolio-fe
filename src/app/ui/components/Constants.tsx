@@ -64,6 +64,7 @@ export const technologies = [
   "OpenGL",
   "Unity",
   "Pytorch",
+  "Drizzle",
   "SQL",
   "Arduino",
   "Common Lisp",
